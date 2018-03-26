@@ -701,7 +701,7 @@ public interface Stream<T> extends BaseStream<T, Stream<T>> {
      * Performs a <a href="package-summary.html#MutableReduction">mutable
      * reduction</a> operation on the elements of this stream.  A mutable
      * reduction is one in which the reduced value is a mutable result container,
-     * such as an {@code ArrayList}, and elements are incorporated by updating
+     * such as an {@code ArrayListTest}, and elements are incorporated by updating
      * the state of the result rather than by replacing the result.  This
      * produces a result equivalent to:
      * <pre>{@code
@@ -719,10 +719,10 @@ public interface Stream<T> extends BaseStream<T, Stream<T>> {
      *
      * @apiNote There are many existing classes in the JDK whose signatures are
      * well-suited for use with method references as arguments to {@code collect()}.
-     * For example, the following will accumulate strings into an {@code ArrayList}:
+     * For example, the following will accumulate strings into an {@code ArrayListTest}:
      * <pre>{@code
-     *     List<String> asList = stringStream.collect(ArrayList::new, ArrayList::add,
-     *                                                ArrayList::addAll);
+     *     List<String> asList = stringStream.collect(ArrayListTest::new, ArrayListTest::add,
+     *                                                ArrayListTest::addAll);
      * }</pre>
      *
      * <p>The following will take a stream of strings and concatenates them into a
@@ -774,11 +774,11 @@ public interface Stream<T> extends BaseStream<T, Stream<T>> {
      * <p>When executed in parallel, multiple intermediate results may be
      * instantiated, populated, and merged so as to maintain isolation of
      * mutable data structures.  Therefore, even when executed in parallel
-     * with non-thread-safe data structures (such as {@code ArrayList}), no
+     * with non-thread-safe data structures (such as {@code ArrayListTest}), no
      * additional synchronization is needed for a parallel reduction.
      *
      * @apiNote
-     * The following will accumulate strings into an ArrayList:
+     * The following will accumulate strings into an ArrayListTest:
      * <pre>{@code
      *     List<String> asList = stringStream.collect(Collectors.toList());
      * }</pre>
@@ -1086,7 +1086,7 @@ public interface Stream<T> extends BaseStream<T, Stream<T>> {
      * A mutable builder for a {@code Stream}.  This allows the creation of a
      * {@code Stream} by generating elements individually and adding them to the
      * {@code Builder} (without the copying overhead that comes from using
-     * an {@code ArrayList} as a temporary buffer.)
+     * an {@code ArrayListTest} as a temporary buffer.)
      *
      * <p>A stream builder has a lifecycle, which starts in a building
      * phase, during which elements can be added, and then transitions to a built

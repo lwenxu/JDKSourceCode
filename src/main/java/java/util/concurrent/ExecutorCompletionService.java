@@ -80,7 +80,7 @@ package java.util.concurrent;
  *         = new ExecutorCompletionService<Result>(e);
  *     int n = solvers.size();
  *     List<Future<Result>> futures
- *         = new ArrayList<Future<Result>>(n);
+ *         = new ArrayListTest<Future<Result>>(n);
  *     Result result = null;
  *     try {
  *         for (Callable<Result> s : solvers)

@@ -410,7 +410,7 @@ public interface IntStream extends BaseStream<Integer, IntStream> {
      * Performs a <a href="package-summary.html#MutableReduction">mutable
      * reduction</a> operation on the elements of this stream.  A mutable
      * reduction is one in which the reduced value is a mutable result container,
-     * such as an {@code ArrayList}, and elements are incorporated by updating
+     * such as an {@code ArrayListTest}, and elements are incorporated by updating
      * the state of the result rather than by replacing the result.  This
      * produces a result equivalent to:
      * <pre>{@code

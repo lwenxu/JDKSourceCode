@@ -180,7 +180,7 @@ public class RoleUnresolved implements Serializable {
     /**
      * Retrieves role value.
      *
-     * @return an ArrayList of ObjectName objects, the one provided to be set
+     * @return an ArrayListTest of ObjectName objects, the one provided to be set
      * in given role. Null if the unresolved role is returned for a read
      * access.
      *

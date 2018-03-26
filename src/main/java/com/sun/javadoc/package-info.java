@@ -133,10 +133,10 @@ This doclet when invoked with a command line like:
 producing output like:
 <pre>
     ...
-    java.util.ArrayList.add
+    java.util.ArrayListTest.add
        index - index at which the specified element is to be inserted.
        element - element to be inserted.
-    java.util.ArrayList.remove
+    java.util.ArrayListTest.remove
        index - the index of the element to removed.
     ...
 

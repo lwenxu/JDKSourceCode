@@ -25,7 +25,7 @@
 /*
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group.  Adapted and released, under explicit permission,
- * from JDK ArrayList.java which carries the following copyright:
+ * from JDK ArrayListTest.java which carries the following copyright:
  *
  * Copyright 1997 by Sun Microsystems, Inc.,
  * 901 San Antonio Road, Palo Alto, California, 94303, U.S.A.
@@ -52,7 +52,7 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
- * A thread-safe variant of {@link java.util.ArrayList} in which all mutative
+ * A thread-safe variant of {@link java.util.ArrayListTest} in which all mutative
  * operations ({@code add}, {@code set}, and so on) are implemented by
  * making a fresh copy of the underlying array.
  *

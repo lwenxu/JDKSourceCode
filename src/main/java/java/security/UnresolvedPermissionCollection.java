@@ -208,7 +208,7 @@ implements java.io.Serializable
         // Convert each entry (Vector) into a List
         Set<Map.Entry<String, Vector<UnresolvedPermission>>> set = permissions.entrySet();
         for (Map.Entry<String, Vector<UnresolvedPermission>> e : set) {
-            // Convert Vector into ArrayList
+            // Convert Vector into ArrayListTest
             Vector<UnresolvedPermission> vec = e.getValue();
             List<UnresolvedPermission> list = new ArrayList<>(vec.size());
             list.addAll(vec);

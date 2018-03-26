@@ -2328,7 +2328,7 @@ public abstract class ResourceBundle {
          * locales with "nb".</li>
          * </ol>
          *
-         * <p>The default implementation uses an {@link ArrayList} that
+         * <p>The default implementation uses an {@link ArrayListTest} that
          * overriding implementations may modify before returning it to the
          * caller. However, a subclass must not modify it after it has
          * been returned by <code>getCandidateLocales</code>.

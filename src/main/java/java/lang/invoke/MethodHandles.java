@@ -893,9 +893,9 @@ import static java.lang.invoke.MethodHandles.*;
 import static java.lang.invoke.MethodType.*;
 ...
 MethodHandle MH_newArrayList = publicLookup().findConstructor(
-  ArrayList.class, methodType(void.class, Collection.class));
+  ArrayListTest.class, methodType(void.class, Collection.class));
 Collection orig = Arrays.asList("x", "y");
-Collection copy = (ArrayList) MH_newArrayList.invokeExact(orig);
+Collection copy = (ArrayListTest) MH_newArrayList.invokeExact(orig);
 assert(orig != copy);
 assertEquals(orig, copy);
 // a variable-arity constructor:
@@ -955,7 +955,7 @@ assertEquals("[x, y, z]", pb.command().toString());
 import static java.lang.invoke.MethodHandles.*;
 import static java.lang.invoke.MethodType.*;
 ...
-static class Listie extends ArrayList {
+static class Listie extends ArrayListTest {
   public String toString() { return "[wee Listie]"; }
   static Lookup lookup() { return MethodHandles.lookup(); }
 }
@@ -969,14 +969,14 @@ try { assertEquals("impossible", Listie.lookup().findSpecial(
  } catch (NoSuchMethodException ex) { } // OK
 // access to super and self methods via invokeSpecial:
 MethodHandle MH_super = Listie.lookup().findSpecial(
-  ArrayList.class, "toString" , methodType(String.class), Listie.class);
+  ArrayListTest.class, "toString" , methodType(String.class), Listie.class);
 MethodHandle MH_this = Listie.lookup().findSpecial(
   Listie.class, "toString" , methodType(String.class), Listie.class);
 MethodHandle MH_duper = Listie.lookup().findSpecial(
   Object.class, "toString" , methodType(String.class), Listie.class);
 assertEquals("[]", (String) MH_super.invokeExact(l));
 assertEquals(""+l, (String) MH_this.invokeExact(l));
-assertEquals("[]", (String) MH_duper.invokeExact(l)); // ArrayList method
+assertEquals("[]", (String) MH_duper.invokeExact(l)); // ArrayListTest method
 try { assertEquals("inaccessible", Listie.lookup().findSpecial(
         String.class, "toString", methodType(String.class), Listie.class));
  } catch (IllegalAccessException ex) { } // OK

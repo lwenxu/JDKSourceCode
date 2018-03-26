@@ -486,8 +486,8 @@ public class NamedNodeMapImpl
         if (nodes == null) return -1;
         if (name == null) return -1;
 
-        // This is a linear search through the same nodes ArrayList.
-        // The ArrayList is sorted on the DOM Level 1 nodename.
+        // This is a linear search through the same nodes ArrayListTest.
+        // The ArrayListTest is sorted on the DOM Level 1 nodename.
         // The DOM Level 2 NS keys are namespaceURI and Localname,
         // so we must linear search thru it.
         // In addition, to get this to work with nodes without any namespace
@@ -572,9 +572,9 @@ public class NamedNodeMapImpl
     }
 
     /**
-     * NON-DOM: copy content of this map into the specified ArrayList
+     * NON-DOM: copy content of this map into the specified ArrayListTest
      *
-     * @param list   ArrayList to copy information into.
+     * @param list   ArrayListTest to copy information into.
      * @return A copy of this node named map
      */
     protected ArrayList cloneMap(ArrayList list) {

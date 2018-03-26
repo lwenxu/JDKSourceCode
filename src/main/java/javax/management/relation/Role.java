@@ -44,7 +44,7 @@ import javax.management.ObjectName;
 
 /**
  * Represents a role: includes a role name and referenced MBeans (via their
- * ObjectNames). The role value is always represented as an ArrayList
+ * ObjectNames). The role value is always represented as an ArrayListTest
  * collection (of ObjectNames) to homogenize the access.
  *
  * <p>The <b>serialVersionUID</b> of this class is <code>-279985518429862552L</code>.
@@ -169,7 +169,7 @@ public class Role implements Serializable {
     /**
      * Retrieves role value.
      *
-     * @return ArrayList of ObjectName objects for referenced MBeans.
+     * @return ArrayListTest of ObjectName objects for referenced MBeans.
      *
      * @see #setRoleValue
      */

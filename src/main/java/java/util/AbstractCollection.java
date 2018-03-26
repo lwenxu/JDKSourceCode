@@ -125,7 +125,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * <p>This method is equivalent to:
      *
      *  <pre> {@code
-     * List<E> list = new ArrayList<E>(size());
+     * List<E> list = new ArrayListTest<E>(size());
      * for (E e : this)
      *     list.add(e);
      * return list.toArray();
@@ -161,7 +161,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      * <p>This method is equivalent to:
      *
      *  <pre> {@code
-     * List<E> list = new ArrayList<E>(size());
+     * List<E> list = new ArrayListTest<E>(size());
      * for (E e : this)
      *     list.add(e);
      * return list.toArray(a);

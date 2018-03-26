@@ -72,7 +72,7 @@ import java.util.function.UnaryOperator;
  * Java Collections Framework</a>.  Unlike the new collection
  * implementations, {@code Vector} is synchronized.  If a thread-safe
  * implementation is not needed, it is recommended to use {@link
- * ArrayList} in place of {@code Vector}.
+ * ArrayListTest} in place of {@code Vector}.
  *
  * @author  Lee Boynton
  * @author  Jonathan Payne
@@ -1341,7 +1341,7 @@ public class Vector<E>
         return new VectorSpliterator<>(this, null, 0, -1, 0);
     }
 
-    /** Similar to ArrayList Spliterator */
+    /** Similar to ArrayListTest Spliterator */
     static final class VectorSpliterator<E> implements Spliterator<E> {
         private final Vector<E> list;
         private Object[] array;

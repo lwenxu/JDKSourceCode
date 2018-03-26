@@ -127,7 +127,7 @@ public interface RelationServiceMBean {
     /**
      * Retrieves names of all known relation types.
      *
-     * @return ArrayList of relation type names (Strings)
+     * @return ArrayListTest of relation type names (Strings)
      */
     public List<String> getAllRelationTypeNames();
 
@@ -137,7 +137,7 @@ public interface RelationServiceMBean {
      *
      * @param relationTypeName  name of relation type
      *
-     * @return ArrayList of RoleInfo.
+     * @return ArrayListTest of RoleInfo.
      *
      * @exception IllegalArgumentException  if null parameter
      * @exception RelationTypeNotFoundException  if there is no relation type
@@ -194,7 +194,7 @@ public interface RelationServiceMBean {
      * given relation type, and adds it in the Relation Service.
      * <P>Roles are initialized according to the role list provided in
      * parameter. The ones not initialized in this way are set to an empty
-     * ArrayList of ObjectNames.
+     * ArrayListTest of ObjectNames.
      * <P>A RelationNotification, with type RELATION_BASIC_CREATION, is sent.
      *
      * @param relationId  relation identifier, to identify uniquely the relation
@@ -337,7 +337,7 @@ public interface RelationServiceMBean {
      * Returns all the relation ids for all the relations handled by the
      * Relation Service.
      *
-     * @return ArrayList of String
+     * @return ArrayListTest of String
      */
     public List<String> getAllRelationIds();
 
@@ -555,7 +555,7 @@ public interface RelationServiceMBean {
      *
      * @return an HashMap, where the keys are the relation ids of the relations
      * where the MBean is referenced, and the value is, for each key,
-     * an ArrayList of role names (as an MBean can be referenced in several
+     * an ArrayListTest of role names (as an MBean can be referenced in several
      * roles in the same relation).
      *
      * @exception IllegalArgumentException  if null parameter
@@ -579,7 +579,7 @@ public interface RelationServiceMBean {
      * roles are considered.
      *
      * @return an HashMap, where the keys are the ObjectNames of the MBeans
-     * associated to given MBean, and the value is, for each key, an ArrayList
+     * associated to given MBean, and the value is, for each key, an ArrayListTest
      * of the relation ids of the relations where the key MBean is
      * associated to given one (as they can be associated in several different
      * relations).
@@ -597,7 +597,7 @@ public interface RelationServiceMBean {
      *
      * @param relationTypeName  relation type name
      *
-     * @return an ArrayList of relation ids.
+     * @return an ArrayListTest of relation ids.
      *
      * @exception IllegalArgumentException  if null parameter
      * @exception RelationTypeNotFoundException  if there is no relation type
@@ -613,7 +613,7 @@ public interface RelationServiceMBean {
      * @param relationId  relation id
      * @param roleName  name of role
      *
-     * @return the ArrayList of ObjectName objects being the role value
+     * @return the ArrayListTest of ObjectName objects being the role value
      *
      * @exception RelationServiceNotRegisteredException  if the Relation
      * Service is not registered
@@ -770,7 +770,7 @@ public interface RelationServiceMBean {
      * @param relationId  relation id
      *
      * @return a HashMap mapping:
-     * <P> ObjectName {@literal ->} ArrayList of String (role
+     * <P> ObjectName {@literal ->} ArrayListTest of String (role
      * names)
      *
      * @exception IllegalArgumentException  if null parameter

@@ -814,7 +814,7 @@ public class PriorityQueue<E> extends AbstractQueue<E>
 
     static final class PriorityQueueSpliterator<E> implements Spliterator<E> {
         /*
-         * This is very similar to ArrayList Spliterator, except for
+         * This is very similar to ArrayListTest Spliterator, except for
          * extra null checks.
          */
         private final PriorityQueue<E> pq;

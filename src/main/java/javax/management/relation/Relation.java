@@ -56,7 +56,7 @@ public interface Relation {
      *
      * @param roleName  name of role
      *
-     * @return the ArrayList of ObjectName objects being the role value
+     * @return the ArrayListTest of ObjectName objects being the role value
      *
      * @exception IllegalArgumentException  if null role name
      * @exception RoleNotFoundException  if:
@@ -236,7 +236,7 @@ public interface Relation {
      * Retrieves MBeans referenced in the various roles of the relation.
      *
      * @return a HashMap mapping:
-     * <P> ObjectName {@literal ->} ArrayList of String (role names)
+     * <P> ObjectName {@literal ->} ArrayListTest of String (role names)
      */
     public Map<ObjectName,List<String>> getReferencedMBeans();
 

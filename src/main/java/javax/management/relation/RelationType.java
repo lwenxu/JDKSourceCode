@@ -25,7 +25,6 @@
 
 package javax.management.relation;
 
-import java.util.ArrayList; // for Javadoc
 import java.util.List;
 
 import java.io.Serializable;
@@ -50,9 +49,9 @@ public interface RelationType extends Serializable {
     public String getRelationTypeName();
 
     /**
-     * Returns the list of role definitions (ArrayList of RoleInfo objects).
+     * Returns the list of role definitions (ArrayListTest of RoleInfo objects).
      *
-     * @return an {@link ArrayList} of {@link RoleInfo}.
+     * @return an {@link ArrayListTest} of {@link RoleInfo}.
      */
     public List<RoleInfo> getRoleInfos();
 

@@ -265,7 +265,7 @@ public class MethodGenerator extends MethodGen
      */
     protected class LocalVariableRegistry {
         /**
-         * <p>A <code>java.lang.ArrayList</code> of all
+         * <p>A <code>java.lang.ArrayListTest</code> of all
          * {@link LocalVariableGen}s created for this method, indexed by the
          * slot number of the local variable.  The JVM stack frame of local
          * variables is divided into "slots".  A single slot can be used to
@@ -312,7 +312,7 @@ public class MethodGenerator extends MethodGen
                 _variables.add(lvg);
             } else {
                 // If the LocalVariableGen reuses a slot, make sure the entry
-                // in _variables contains an ArrayList and add the newly
+                // in _variables contains an ArrayListTest and add the newly
                 // registered LocalVariableGen to the list.  If the entry in
                 // _variables just contains null padding, store the
                 // LocalVariableGen directly.
@@ -357,7 +357,7 @@ public class MethodGenerator extends MethodGen
 
             // If this slot index was never used, _variables.get will return
             // null; if it was used once, it will return the LocalVariableGen;
-            // more than once it will return an ArrayList of all the
+            // more than once it will return an ArrayListTest of all the
             // LocalVariableGens for variables stored in that slot.  For each
             // LocalVariableGen, check whether its range includes the
             // specified offset, and return the first such encountered.
@@ -820,7 +820,7 @@ public class MethodGenerator extends MethodGen
      * @param classGen The {@link ClassGen} with which the generated methods
      *                 will be associated
      * @param totalMethodSize the size of the bytecode in the original method
-     * @return a <code>java.util.ArrayList</code> containing the
+     * @return a <code>java.util.ArrayListTest</code> containing the
      *  {@link MethodGenerator.Chunk}s that may be outlined from this method
      */
     private ArrayList getCandidateChunks(ClassGenerator classGen,
@@ -986,7 +986,7 @@ public class MethodGenerator extends MethodGen
      * @param chunks array of sibling {@link MethodGenerator.Chunk}s that are
      *               under consideration for outlining.  Chunks must be in
      *               the order encountered in the {@link InstructionList}
-     * @return a <code>java.util.ArrayList</code> of
+     * @return a <code>java.util.ArrayListTest</code> of
      *         <code>MethodGenerator.Chunk</code>s maximally merged
      */
     private ArrayList mergeAdjacentChunks(Chunk[] chunks) {

@@ -97,7 +97,7 @@ import java.io.IOException;
  * both the for-each and try-with-resources constructs.
  * <pre>
  *   List&lt;Path&gt; listSourceFiles(Path dir) throws IOException {
- *       List&lt;Path&gt; result = new ArrayList&lt;&gt;();
+ *       List&lt;Path&gt; result = new ArrayListTest&lt;&gt;();
  *       try (DirectoryStream&lt;Path&gt; stream = Files.newDirectoryStream(dir, "*.{c,h,cpp,hpp,java}")) {
  *           for (Path entry: stream) {
  *               result.add(entry);

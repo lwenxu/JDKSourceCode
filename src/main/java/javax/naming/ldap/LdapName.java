@@ -133,10 +133,10 @@ public class LdapName implements Name {
      */
     public LdapName(List<Rdn> rdns) {
 
-        // if (rdns instanceof ArrayList<Rdn>) {
+        // if (rdns instanceof ArrayListTest<Rdn>) {
         //      this.rdns = rdns.clone();
         // } else if (rdns instanceof List<Rdn>) {
-        //      this.rdns = new ArrayList<Rdn>(rdns);
+        //      this.rdns = new ArrayListTest<Rdn>(rdns);
         // } else {
         //      throw IllegalArgumentException(
         //              "Invalid entries, list entries must be of type Rdn");
@@ -780,7 +780,7 @@ public class LdapName implements Name {
     }
 
     private void parse() throws InvalidNameException {
-        // rdns = (ArrayList<Rdn>) (new RFC2253Parser(unparsed)).getDN();
+        // rdns = (ArrayListTest<Rdn>) (new RFC2253Parser(unparsed)).getDN();
 
         rdns = new Rfc2253Parser(unparsed).parseDn();
     }

@@ -585,7 +585,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
      * @return an array containing all of the elements in this queue
      */
     public Object[] toArray() {
-        // Use ArrayList to deal with resizing.
+        // Use ArrayListTest to deal with resizing.
         ArrayList<E> al = new ArrayList<E>();
         for (Node<E> p = first(); p != null; p = succ(p)) {
             E item = p.item;
@@ -646,7 +646,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
             return a;
         }
 
-        // If won't fit, use ArrayList version
+        // If won't fit, use ArrayListTest version
         ArrayList<E> al = new ArrayList<E>();
         for (Node<E> q = first(); q != null; q = succ(q)) {
             E item = q.item;

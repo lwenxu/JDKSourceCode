@@ -84,17 +84,17 @@ public class GIFImageMetadata extends GIFMetadata {
 
     // Fields from ApplicationExtension
     // List of byte[]
-    public List applicationIDs = null; // new ArrayList();
+    public List applicationIDs = null; // new ArrayListTest();
 
     // List of byte[]
-    public List authenticationCodes = null; // new ArrayList();
+    public List authenticationCodes = null; // new ArrayListTest();
 
     // List of byte[]
-    public List applicationData = null; // new ArrayList();
+    public List applicationData = null; // new ArrayListTest();
 
     // Fields from CommentExtension
     // List of byte[]
-    public List comments = null; // new ArrayList();
+    public List comments = null; // new ArrayListTest();
 
     protected GIFImageMetadata(boolean standardMetadataFormatSupported,
                                String nativeMetadataFormatName,

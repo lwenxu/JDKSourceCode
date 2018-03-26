@@ -1377,7 +1377,7 @@ public class      BeanContextSupport extends BeanContextChildSupport
     private             int             serializable  = 0; // children serializable
 
     /**
-     * all accesses to the <code> protected ArrayList bcmListeners </code> field
+     * all accesses to the <code> protected ArrayListTest bcmListeners </code> field
      * shall be synchronized on that object.
      */
     protected transient ArrayList       bcmListeners;

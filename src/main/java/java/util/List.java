@@ -97,7 +97,7 @@ import java.util.function.UnaryOperator;
  * @author  Neal Gafter
  * @see Collection
  * @see Set
- * @see ArrayList
+ * @see ArrayListTest
  * @see LinkedList
  * @see Vector
  * @see Arrays#asList(Object[])

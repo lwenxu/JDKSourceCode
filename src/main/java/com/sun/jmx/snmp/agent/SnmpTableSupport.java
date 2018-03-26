@@ -455,7 +455,7 @@ public abstract class SnmpTableSupport implements SnmpTableEntryFactory,
     //-----------------------------------------------------------------
 
     /**
-     * Allocates an ArrayList for storing table entries.
+     * Allocates an ArrayListTest for storing table entries.
      *
      * This method is called within the constructor at object creation.
      * Any object implementing the {@link java.util.List} interface can

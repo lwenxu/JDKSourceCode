@@ -265,7 +265,7 @@ public class RelationSupport
      *
      * @param roleName  name of role
      *
-     * @return the ArrayList of ObjectName objects being the role value
+     * @return the ArrayListTest of ObjectName objects being the role value
      *
      * @exception IllegalArgumentException  if null role name
      * @exception RoleNotFoundException  if:
@@ -590,7 +590,7 @@ public class RelationSupport
      * Retrieves MBeans referenced in the various roles of the relation.
      *
      * @return a HashMap mapping:
-     * <P> ObjectName {@literal ->} ArrayList of String (role names)
+     * <P> ObjectName {@literal ->} ArrayListTest of String (role names)
      */
     public Map<ObjectName,List<String>> getReferencedMBeans() {
 
@@ -731,7 +731,7 @@ public class RelationSupport
     // Depending on parameters reflecting its use (either in the scope of
     // getting a single role or of getting several roles), will return:
     // - in case of success:
-    //   - for single role retrieval, the ArrayList of ObjectNames being the
+    //   - for single role retrieval, the ArrayListTest of ObjectNames being the
     //     role value
     //   - for multi-role retrieval, the Role object itself
     // - in case of failure (except critical exceptions):
@@ -751,7 +751,7 @@ public class RelationSupport
     //
     // -return:
     //  - for single role retrieval (multiRoleFlg false):
-    //    - ArrayList of ObjectName objects, value of role with given name, if
+    //    - ArrayListTest of ObjectName objects, value of role with given name, if
     //      the role can be retrieved
     //    - raise a RoleNotFoundException exception else
     //  - for multi-role retrieval (multiRoleFlg true):
@@ -1256,7 +1256,7 @@ public class RelationSupport
     //   a relation MBean.
     //
     // -param newRole  new role
-    // -param oldRoleValue  old role value (ArrayList of ObjectNames)
+    // -param oldRoleValue  old role value (ArrayListTest of ObjectNames)
     // -param relationServCallFlg  true if call from the Relation Service; this
     //  will happen if the current RelationSupport object has been created by
     //  the Relation Service (via createRelation()) method, so direct access is
@@ -1353,7 +1353,7 @@ public class RelationSupport
     // informed of MBeans no longer referenced.
     //
     // -param newRole  new role
-    // -param oldRoleValue  old role value (ArrayList of ObjectNames)
+    // -param oldRoleValue  old role value (ArrayListTest of ObjectNames)
     // -param relationServCallFlg  true if call from the Relation Service; this
     //  will happen if the current RelationSupport object has been created by
     //  the Relation Service (via createRelation()) method, so direct access is

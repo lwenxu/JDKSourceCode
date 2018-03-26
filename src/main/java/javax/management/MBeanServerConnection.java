@@ -549,7 +549,7 @@ public interface MBeanServerConnection {
      * if (list.size() == attrNames.length)
      *     System.out.println("All attributes were retrieved successfully");
      * else {
-     *     {@code List<String>} missing = new {@code ArrayList<String>}(<!--
+     *     {@code List<String>} missing = new {@code ArrayListTest<String>}(<!--
      * -->{@link java.util.Arrays#asList Arrays.asList}(attrNames));
      *     for (Attribute a : list.asList())
      *         missing.remove(a.getName());
@@ -639,7 +639,7 @@ public interface MBeanServerConnection {
      * if (inputAttrs.size() == outputAttrs.size())
      *     System.out.println("All attributes were set successfully");
      * else {
-     *     {@code List<String>} missing = new {@code ArrayList<String>}();
+     *     {@code List<String>} missing = new {@code ArrayListTest<String>}();
      *     for (Attribute a : inputAttrs.asList())
      *         missing.add(a.getName());
      *     for (Attribute a : outputAttrs.asList())

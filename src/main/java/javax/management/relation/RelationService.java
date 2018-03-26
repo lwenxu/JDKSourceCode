@@ -98,7 +98,7 @@ public class RelationService extends NotificationBroadcasterSupport
         new HashMap<String,RelationType>();
 
     // Map associating:
-    //       <relation type name> -> ArrayList of <relation id>
+    //       <relation type name> -> ArrayListTest of <relation id>
     // to list all the relations of a given type
     private Map<String,List<String>> myRelType2RelIdsMap =
         new HashMap<String,List<String>>();
@@ -106,7 +106,7 @@ public class RelationService extends NotificationBroadcasterSupport
     // Map associating:
     //       <ObjectName> -> HashMap
     // the value HashMap mapping:
-    //       <relation id> -> ArrayList of <role name>
+    //       <relation id> -> ArrayListTest of <role name>
     // to track where a given MBean is referenced.
     private final Map<ObjectName,Map<String,List<String>>>
         myRefedMBeanObjName2RelIdsMap =
@@ -354,7 +354,7 @@ public class RelationService extends NotificationBroadcasterSupport
     /**
      * Retrieves names of all known relation types.
      *
-     * @return ArrayList of relation type names (Strings)
+     * @return ArrayListTest of relation type names (Strings)
      */
     public List<String> getAllRelationTypeNames() {
         ArrayList<String> result;
@@ -370,7 +370,7 @@ public class RelationService extends NotificationBroadcasterSupport
      *
      * @param relationTypeName  name of relation type
      *
-     * @return ArrayList of RoleInfo.
+     * @return ArrayListTest of RoleInfo.
      *
      * @exception IllegalArgumentException  if null parameter
      * @exception RelationTypeNotFoundException  if there is no relation type
@@ -518,7 +518,7 @@ public class RelationService extends NotificationBroadcasterSupport
      * given relation type, and adds it in the Relation Service.
      * <P>Roles are initialized according to the role list provided in
      * parameter. The ones not initialized in this way are set to an empty
-     * ArrayList of ObjectNames.
+     * ArrayListTest of ObjectNames.
      * <P>A RelationNotification, with type RELATION_BASIC_CREATION, is sent.
      *
      * @param relationId  relation identifier, to identify uniquely the relation
@@ -897,7 +897,7 @@ public class RelationService extends NotificationBroadcasterSupport
      * Returns all the relation ids for all the relations handled by the
      * Relation Service.
      *
-     * @return ArrayList of String
+     * @return ArrayListTest of String
      */
     public List<String> getAllRelationIds() {
         List<String> result;
@@ -1594,7 +1594,7 @@ public class RelationService extends NotificationBroadcasterSupport
      *
      * @return an HashMap, where the keys are the relation ids of the relations
      * where the MBean is referenced, and the value is, for each key,
-     * an ArrayList of role names (as an MBean can be referenced in several
+     * an ArrayListTest of role names (as an MBean can be referenced in several
      * roles in the same relation).
      *
      * @exception IllegalArgumentException  if null parameter
@@ -1702,7 +1702,7 @@ public class RelationService extends NotificationBroadcasterSupport
      * roles are considered.
      *
      * @return an HashMap, where the keys are the ObjectNames of the MBeans
-     * associated to given MBean, and the value is, for each key, an ArrayList
+     * associated to given MBean, and the value is, for each key, an ArrayListTest
      * of the relation ids of the relations where the key MBean is
      * associated to given one (as they can be associated in several different
      * relations).
@@ -1779,7 +1779,7 @@ public class RelationService extends NotificationBroadcasterSupport
      *
      * @param relationTypeName  relation type name
      *
-     * @return an ArrayList of relation ids.
+     * @return an ArrayListTest of relation ids.
      *
      * @exception IllegalArgumentException  if null parameter
      * @exception RelationTypeNotFoundException  if there is no relation type
@@ -1820,7 +1820,7 @@ public class RelationService extends NotificationBroadcasterSupport
      * @param relationId  relation id
      * @param roleName  name of role
      *
-     * @return the ArrayList of ObjectName objects being the role value
+     * @return the ArrayListTest of ObjectName objects being the role value
      *
      * @exception RelationServiceNotRegisteredException  if the Relation
      * Service is not registered
@@ -2306,7 +2306,7 @@ public class RelationService extends NotificationBroadcasterSupport
      * @param relationId  relation id
      *
      * @return a HashMap mapping:
-     * <P> ObjectName {@literal ->} ArrayList of String (role names)
+     * <P> ObjectName {@literal ->} ArrayListTest of String (role names)
      *
      * @exception IllegalArgumentException  if null parameter
      * @exception RelationNotFoundException  if no relation for given
@@ -2832,9 +2832,9 @@ public class RelationService extends NotificationBroadcasterSupport
     // Updates the listener registered to the MBean Server to be informed of
     // referenced MBean deregistrations
     //
-    // -param newRefList  ArrayList of ObjectNames for new references done
+    // -param newRefList  ArrayListTest of ObjectNames for new references done
     //  to MBeans (can be null)
-    // -param obsoleteRefList  ArrayList of ObjectNames for obsolete references
+    // -param obsoleteRefList  ArrayListTest of ObjectNames for obsolete references
     //  to MBeans (can be null)
     //
     // -exception RelationServiceNotRegisteredException  if the Relation
@@ -3122,7 +3122,7 @@ public class RelationService extends NotificationBroadcasterSupport
         // done automatically in initializeMissingRoles() sets each
         // uninitialized role to an empty value.
         for (Role currRole : roleList.asList()) {
-            // Creates a dummy empty ArrayList of ObjectNames to be the old
+            // Creates a dummy empty ArrayListTest of ObjectNames to be the old
             // role value :)
             List<ObjectName> dummyList = new ArrayList<ObjectName>();
             // Will not throw a RelationNotFoundException (as the RelId2Obj map
@@ -3282,7 +3282,7 @@ public class RelationService extends NotificationBroadcasterSupport
 
 
     // Initializes roles associated to given role infos to default value (empty
-    // ArrayList of ObjectNames) in given relation.
+    // ArrayListTest of ObjectNames) in given relation.
     // It will succeed for every role except if the role info has a minimum
     // cardinality greater than 0. In that case, an InvalidRoleValueException
     // will be raised.
@@ -3502,8 +3502,8 @@ public class RelationService extends NotificationBroadcasterSupport
     //  expected to be unregistered due to relation removal (only for removal,
     //  due to CIM qualifiers, can be null)
     // -param roleName  role name
-    // -param roleNewValue  role new value (ArrayList of ObjectNames)
-    // -param oldValue  old role value (ArrayList of ObjectNames)
+    // -param roleNewValue  role new value (ArrayListTest of ObjectNames)
+    // -param oldValue  old role value (ArrayListTest of ObjectNames)
     //
     // -exception IllegalArgument  if null parameter
     // -exception RelationNotFoundException  if no relation for given id

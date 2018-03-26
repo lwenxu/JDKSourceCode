@@ -195,7 +195,7 @@ public class PIHandlerImpl implements PIHandler
     // Class to contain all ThreadLocal data for ClientRequestInfo
     // maintenance.
     //
-    // We use an ArrayList instead since it is not thread-safe.
+    // We use an ArrayListTest instead since it is not thread-safe.
     // RequestInfoStack is used quite frequently.
     private final class RequestInfoStack extends Stack {
         // Number of times a request has been made to disable interceptors.

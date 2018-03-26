@@ -31,7 +31,6 @@ package javax.management.openmbean;
 //
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 // jmx import
@@ -57,7 +56,7 @@ public class TabularType extends OpenType<TabularData> {
 
     /**
      * @serial The items used to index each row element, kept in the order the user gave
-     *         This is an unmodifiable {@link ArrayList}
+     *         This is an unmodifiable {@link ArrayListTest}
      */
     private List<String> indexNames;
 

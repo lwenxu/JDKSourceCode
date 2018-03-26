@@ -156,7 +156,7 @@ import java.util.function.LongConsumer;
  * <br>Late binding narrows the window during which interference can affect
  * the calculation; fail-fast detects, on a best-effort basis, that structural
  * interference has occurred after traversal has commenced and throws
- * {@link ConcurrentModificationException}.  For example, {@link ArrayList},
+ * {@link ConcurrentModificationException}.  For example, {@link ArrayListTest},
  * and many other non-concurrent {@code Collection} classes in the JDK, provide
  * a late-binding, fail-fast spliterator.</li>
  * <li>The mutable source provides a non-late-binding but fail-fast Spliterator.

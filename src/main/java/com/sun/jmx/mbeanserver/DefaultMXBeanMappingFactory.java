@@ -606,7 +606,7 @@ public class DefaultMXBeanMappingFactory extends MXBeanMappingFactory {
             this.elementMapping = elementMapping;
 
             /* Determine the concrete class to be used when converting
-               back to this Java type.  We convert all Lists to ArrayList
+               back to this Java type.  We convert all Lists to ArrayListTest
                and all Sets to TreeSet.  (TreeSet because it is a SortedSet,
                so works for both Set and SortedSet.)  */
             Type raw = ((ParameterizedType) targetType).getRawType();

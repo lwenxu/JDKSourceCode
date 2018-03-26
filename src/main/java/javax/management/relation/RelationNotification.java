@@ -35,7 +35,6 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
 
 import java.security.AccessController;
-import java.security.PrivilegedAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,9 +111,9 @@ public class RelationNotification extends Notification {
      * relation removal
      * @serialField roleName String Name of updated role (only for role update)
      * @serialField oldRoleValue List Old role value ({@link
-     * ArrayList} of {@link ObjectName}s) (only for role update)
+     * ArrayListTest} of {@link ObjectName}s) (only for role update)
      * @serialField newRoleValue List New role value ({@link
-     * ArrayList} of {@link ObjectName}s) (only for role update)
+     * ArrayListTest} of {@link ObjectName}s) (only for role update)
      */
     private static final ObjectStreamField[] serialPersistentFields;
     private static boolean compat = false;
@@ -198,12 +197,12 @@ public class RelationNotification extends Notification {
     private String roleName = null;
 
     /**
-     * @serial Old role value ({@link ArrayList} of {@link ObjectName}s) (only for role update)
+     * @serial Old role value ({@link ArrayListTest} of {@link ObjectName}s) (only for role update)
      */
     private List<ObjectName> oldRoleValue = null;
 
     /**
-     * @serial New role value ({@link ArrayList} of {@link ObjectName}s) (only for role update)
+     * @serial New role value ({@link ArrayListTest} of {@link ObjectName}s) (only for role update)
      */
     private List<ObjectName> newRoleValue = null;
 

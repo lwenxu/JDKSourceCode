@@ -57,8 +57,8 @@ final class Rfc2253Parser {
         List<Rdn> parseDn() throws InvalidNameException {
             cur = 0;
 
-            // ArrayList<Rdn> rdns =
-            //  new ArrayList<Rdn>(len / 3 + 10);  // leave room for growth
+            // ArrayListTest<Rdn> rdns =
+            //  new ArrayListTest<Rdn>(len / 3 + 10);  // leave room for growth
 
             ArrayList<Rdn> rdns =
                 new ArrayList<>(len / 3 + 10);  // leave room for growth

@@ -598,7 +598,7 @@ public class MemoryPool
                 comparator()}.</p>
 
     <p>A {@code List<}<em>E</em>{@code >} is reconstructed as a
-      {@code java.util.ArrayList<}<em>E</em>{@code >};
+      {@code java.util.ArrayListTest<}<em>E</em>{@code >};
       a {@code Set<}<em>E</em>{@code >} as a
       {@code java.util.HashSet<}<em>E</em>{@code >};
       a {@code SortedSet<}<em>E</em>{@code >} as a

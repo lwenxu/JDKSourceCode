@@ -1,7 +1,8 @@
-package java.util;
+package java.util.ArrayListTest;
 
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import java.util.ArrayList;
 
 public class ArrayListTest {
 
@@ -12,7 +13,6 @@ public class ArrayListTest {
         list.add(1);
         list.add(4);
         list.add(6);
-
         list.forEach(System.out::print);
     }
 }

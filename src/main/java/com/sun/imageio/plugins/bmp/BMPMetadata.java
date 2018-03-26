@@ -93,7 +93,7 @@ public class BMPMetadata extends IIOMetadata implements BMPConstants {
 
     // Fields from CommentExtension
     // List of byte[]
-    public List comments = null; // new ArrayList();
+    public List comments = null; // new ArrayListTest();
 
     public BMPMetadata() {
         super(true,

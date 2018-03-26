@@ -69,7 +69,7 @@ public interface ParameterizedType extends Type {
      * Return null if this is an interface type.
      *
      * <p> For example, if this parameterized type is
-     * {@code java.util.ArrayList<String>}, the result will be
+     * {@code java.util.ArrayListTest<String>}, the result will be
      * {@code java.util.AbstractList<String>}.
      *
      * @return the class type that is a direct supertype of this one.

@@ -29,7 +29,7 @@ import java.util.EmptyStackException ;
 
 // We implement a Stack here instead of using java.util.Stack because
 // java.util.Stack is thread-safe, negatively impacting performance.
-// We use an ArrayList instead since it is not thread-safe.
+// We use an ArrayListTest instead since it is not thread-safe.
 // RequestInfoStack is used quite frequently.
 public class StackImpl {
     // The stack for RequestInfo objects.

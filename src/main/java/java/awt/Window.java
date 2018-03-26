@@ -723,7 +723,7 @@ public class Window extends Container implements Accessible {
      * </pre>
      * is equivalent to:
      * <pre>
-     *     ArrayList&lt;Image&gt; imageList = new ArrayList&lt;Image&gt;();
+     *     ArrayListTest&lt;Image&gt; imageList = new ArrayListTest&lt;Image&gt;();
      *     imageList.add(image);
      *     setIconImages(imageList);
      * </pre>

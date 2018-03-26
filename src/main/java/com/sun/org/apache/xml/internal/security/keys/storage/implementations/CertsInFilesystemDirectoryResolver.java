@@ -113,7 +113,7 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
                 X509Certificate cert =
                     (X509Certificate) cf.generateCertificate(fis);
 
-                //add to ArrayList
+                //add to ArrayListTest
                 cert.checkValidity();
                 this.certs.add(cert);
 

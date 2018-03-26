@@ -78,7 +78,7 @@ import javax.management.openmbean.OpenType;
  *
  *     {@literal @Override}
  *     public Object toOpenValue(Object javaValue) throws OpenDataException {
- *         ArrayList&lt;String&gt; array = new ArrayList&lt;String&gt;();
+ *         ArrayListTest&lt;String&gt; array = new ArrayListTest&lt;String&gt;();
  *         for (MyLinkedList list = (MyLinkedList) javaValue; list != null;
  *              list = list.getNext())
  *             array.add(list.getName());

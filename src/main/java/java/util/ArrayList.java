@@ -44,19 +44,19 @@ import java.util.function.UnaryOperator;
  * run in linear time (roughly speaking).  The constant factor is low compared
  * to that for the <tt>LinkedList</tt> implementation.
  *
- * <p>Each <tt>ArrayList</tt> instance has a <i>capacity</i>.  The capacity is
+ * <p>Each <tt>ArrayListTest</tt> instance has a <i>capacity</i>.  The capacity is
  * the size of the array used to store the elements in the list.  It is always
- * at least as large as the list size.  As elements are added to an ArrayList,
+ * at least as large as the list size.  As elements are added to an ArrayListTest,
  * its capacity grows automatically.  The details of the growth policy are not
  * specified beyond the fact that adding an element has constant amortized
  * time cost.
  *
- * <p>An application can increase the capacity of an <tt>ArrayList</tt> instance
+ * <p>An application can increase the capacity of an <tt>ArrayListTest</tt> instance
  * before adding a large number of elements using the <tt>ensureCapacity</tt>
  * operation.  This may reduce the amount of incremental reallocation.
  *
  * <p><strong>Note that this implementation is not synchronized.</strong>
- * If multiple threads access an <tt>ArrayList</tt> instance concurrently,
+ * If multiple threads access an <tt>ArrayListTest</tt> instance concurrently,
  * and at least one of the threads modifies the list structurally, it
  * <i>must</i> be synchronized externally.  (A structural modification is
  * any operation that adds or deletes one or more elements, or explicitly
@@ -68,7 +68,7 @@ import java.util.function.UnaryOperator;
  * {@link Collections#synchronizedList Collections.synchronizedList}
  * method.  This is best done at creation time, to prevent accidental
  * unsynchronized access to the list:<pre>
- *   List list = Collections.synchronizedList(new ArrayList(...));</pre>
+ *   List list = Collections.synchronizedList(new ArrayListTest(...));</pre>
  *
  * <p><a name="fail-fast">
  * The iterators returned by this class's {@link #iterator() iterator} and
@@ -117,7 +117,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
     // 默认的空数组  这个是在传入无参的是构造函数会调用的
     private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
 
-    // 用来存放 ArrayList 中的元素
+    // 用来存放 ArrayListTest 中的元素
     transient Object[] elementData; // non-private to simplify nested class access
 
     // 大小
@@ -164,9 +164,9 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
     }
 
     /**
-     * Trims the capacity of this <tt>ArrayList</tt> instance to be the
+     * Trims the capacity of this <tt>ArrayListTest</tt> instance to be the
      * list's current size.  An application can use this operation to minimize
-     * the storage of an <tt>ArrayList</tt> instance.
+     * the storage of an <tt>ArrayListTest</tt> instance.
      */
     public void trimToSize() {
         modCount++;
@@ -178,7 +178,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
     }
 
     /**
-     * Increases the capacity of this <tt>ArrayList</tt> instance, if
+     * Increases the capacity of this <tt>ArrayListTest</tt> instance, if
      * necessary, to ensure that it can hold at least the number of elements
      * specified by the minimum capacity argument.
      *
@@ -322,10 +322,10 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
     }
 
     /**
-     * Returns a shallow copy of this <tt>ArrayList</tt> instance.  (The
+     * Returns a shallow copy of this <tt>ArrayListTest</tt> instance.  (The
      * elements themselves are not copied.)
      *
-     * @return a clone of this <tt>ArrayList</tt> instance
+     * @return a clone of this <tt>ArrayListTest</tt> instance
      */
     public Object clone() {
         try {
@@ -684,10 +684,10 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
     }
 
     /**
-     * Save the state of the <tt>ArrayList</tt> instance to a stream (that
+     * Save the state of the <tt>ArrayListTest</tt> instance to a stream (that
      * is, serialize it).
      *
-     * @serialData The length of the array backing the <tt>ArrayList</tt>
+     * @serialData The length of the array backing the <tt>ArrayListTest</tt>
      *             instance is emitted (int), followed by all of its elements
      *             (each an <tt>Object</tt>) in the proper order.
      */
@@ -716,7 +716,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
     }
 
     /**
-     * Reconstitute the <tt>ArrayList</tt> instance from a stream (that is,
+     * Reconstitute the <tt>ArrayListTest</tt> instance from a stream (that is,
      * deserialize it).
      */
     private void readObject(java.io.ObjectInputStream s)

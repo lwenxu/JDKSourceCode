@@ -27,9 +27,7 @@ package javax.management;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>Represents a list of values for attributes of an MBean.  See the
@@ -47,9 +45,9 @@ import java.util.Map;
  *
  * @since 1.5
  */
-/* We cannot extend ArrayList<Attribute> because our legacy
-   add(Attribute) method would then override add(E) in ArrayList<E>,
-   and our return value is void whereas ArrayList.add(E)'s is boolean.
+/* We cannot extend ArrayListTest<Attribute> because our legacy
+   add(Attribute) method would then override add(E) in ArrayListTest<E>,
+   and our return value is void whereas ArrayListTest.add(E)'s is boolean.
    Likewise for set(int,Attribute).  Grrr.  We cannot use covariance
    to override the most important methods and have them return
    Attribute, either, because that would break subclasses that
@@ -57,7 +55,7 @@ import java.util.Map;
    of Object).  Finally, we cannot implement Iterable<Attribute>
    so you could write
        for (Attribute a : attributeList)
-   because ArrayList<> implements Iterable<> and the same class cannot
+   because ArrayListTest<> implements Iterable<> and the same class cannot
    implement two versions of a generic interface.  Instead we provide
    the asList() method so you can write
        for (Attribute a : attributeList.asList())
@@ -83,7 +81,7 @@ public class AttributeList extends ArrayList<Object> {
      *
      * @param initialCapacity the initial capacity of the
      * <code>AttributeList</code>, as specified by {@link
-     * ArrayList#ArrayList(int)}.
+     * ArrayListTest#ArrayList(int)}.
      */
     public AttributeList(int initialCapacity) {
         super(initialCapacity);
@@ -100,7 +98,7 @@ public class AttributeList extends ArrayList<Object> {
      * @param list the <code>AttributeList</code> that defines the initial
      * contents of the new <code>AttributeList</code>.
      *
-     * @see ArrayList#ArrayList(java.util.Collection)
+     * @see ArrayListTest#ArrayList(java.util.Collection)
      */
     public AttributeList(AttributeList list) {
         super(list);
@@ -118,7 +116,7 @@ public class AttributeList extends ArrayList<Object> {
      * is {@code null} or if the {@code list} parameter contains any
      * non-Attribute objects.
      *
-     * @see ArrayList#ArrayList(java.util.Collection)
+     * @see ArrayListTest#ArrayList(java.util.Collection)
      *
      * @since 1.6
      */
@@ -224,7 +222,7 @@ public class AttributeList extends ArrayList<Object> {
      *
      * @return true if this list changed as a result of the call.
      *
-     * @see ArrayList#addAll(java.util.Collection)
+     * @see ArrayListTest#addAll(java.util.Collection)
      */
     public boolean addAll(AttributeList list)  {
         return (super.addAll(list));
@@ -244,7 +242,7 @@ public class AttributeList extends ArrayList<Object> {
      *
      * @return true if this list changed as a result of the call.
      *
-     * @see ArrayList#addAll(int, java.util.Collection)
+     * @see ArrayListTest#addAll(int, java.util.Collection)
      */
     public boolean addAll(int index, AttributeList list)  {
         try {
@@ -256,7 +254,7 @@ public class AttributeList extends ArrayList<Object> {
     }
 
     /*
-     * Override all of the methods from ArrayList<Object> that might add
+     * Override all of the methods from ArrayListTest<Object> that might add
      * a non-Attribute to the List, and disallow that if asList has ever
      * been called on this instance.
      */

@@ -613,9 +613,9 @@ final class SnmpRequestTree {
             SnmpVarBind rs = statusvb;
 
             if (entryoids == null) {
-//              entryoids = new ArrayList();
-//              entrylists = new ArrayList();
-//              isentrynew = new ArrayList();
+//              entryoids = new ArrayListTest();
+//              entrylists = new ArrayListTest();
+//              isentrynew = new ArrayListTest();
                 v = new Vector<>();
 //              entryoids.add(entryoid);
 //              entrylists.add(v);

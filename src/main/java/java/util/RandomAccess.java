@@ -33,7 +33,7 @@ package java.util;
  * sequential access lists.
  *
  * <p>The best algorithms for manipulating random access lists (such as
- * <tt>ArrayList</tt>) can produce quadratic behavior when applied to
+ * <tt>ArrayListTest</tt>) can produce quadratic behavior when applied to
  * sequential access lists (such as <tt>LinkedList</tt>).  Generic list
  * algorithms are encouraged to check whether the given list is an
  * <tt>instanceof</tt> this interface before applying an algorithm that would

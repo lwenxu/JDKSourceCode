@@ -1362,7 +1362,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
         Node<K,V> basepred = h.node;
 
         // Track the current rightmost node at each level. Uses an
-        // ArrayList to avoid committing to initial or maximum level.
+        // ArrayListTest to avoid committing to initial or maximum level.
         ArrayList<Index<K,V>> preds = new ArrayList<Index<K,V>>();
 
         // initialize

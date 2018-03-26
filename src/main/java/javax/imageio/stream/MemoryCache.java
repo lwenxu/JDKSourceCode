@@ -34,7 +34,7 @@ import java.io.IOException;
  * Package-visible class consolidating common code for
  * <code>MemoryCacheImageInputStream</code> and
  * <code>MemoryCacheImageOutputStream</code>.
- * This class keeps an <code>ArrayList</code> of 8K blocks,
+ * This class keeps an <code>ArrayListTest</code> of 8K blocks,
  * loaded sequentially.  Blocks may only be disposed of
  * from the index 0 forward.  As blocks are freed, the
  * corresponding entries in the array list are set to

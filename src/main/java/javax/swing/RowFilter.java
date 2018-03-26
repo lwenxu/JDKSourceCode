@@ -235,7 +235,7 @@ public abstract class RowFilter<M,I> {
      * include any entries containing the string "foo" or the string
      * "bar":
      * <pre>
-     *   List&lt;RowFilter&lt;Object,Object&gt;&gt; filters = new ArrayList&lt;RowFilter&lt;Object,Object&gt;&gt;(2);
+     *   List&lt;RowFilter&lt;Object,Object&gt;&gt; filters = new ArrayListTest&lt;RowFilter&lt;Object,Object&gt;&gt;(2);
      *   filters.add(RowFilter.regexFilter("foo"));
      *   filters.add(RowFilter.regexFilter("bar"));
      *   RowFilter&lt;Object,Object&gt; fooBarFilter = RowFilter.orFilter(filters);
@@ -261,7 +261,7 @@ public abstract class RowFilter<M,I> {
      * include any entries containing the string "foo" and the string
      * "bar":
      * <pre>
-     *   List&lt;RowFilter&lt;Object,Object&gt;&gt; filters = new ArrayList&lt;RowFilter&lt;Object,Object&gt;&gt;(2);
+     *   List&lt;RowFilter&lt;Object,Object&gt;&gt; filters = new ArrayListTest&lt;RowFilter&lt;Object,Object&gt;&gt;(2);
      *   filters.add(RowFilter.regexFilter("foo"));
      *   filters.add(RowFilter.regexFilter("bar"));
      *   RowFilter&lt;Object,Object&gt; fooBarFilter = RowFilter.andFilter(filters);

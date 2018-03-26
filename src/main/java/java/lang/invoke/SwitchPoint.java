@@ -100,7 +100,7 @@ package java.lang.invoke;
  *         return MethodHandles.guardWithTest(this.mcsInvoker, target, fallback);
  *     }
  *     public static void invalidateAll(SwitchPoint[] spts) {
- *         List<MutableCallSite> mcss = new ArrayList<>();
+ *         List<MutableCallSite> mcss = new ArrayListTest<>();
  *         for (SwitchPoint spt : spts)  mcss.add(spt.mcs);
  *         for (MutableCallSite mcs : mcss)  mcs.setTarget(K_false);
  *         MutableCallSite.syncAll(mcss.toArray(new MutableCallSite[0]));

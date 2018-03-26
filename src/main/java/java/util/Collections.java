@@ -2356,7 +2356,7 @@ public class Collections {
      * It is imperative that the user manually synchronize on the returned
      * list when iterating over it:
      * <pre>
-     *  List list = Collections.synchronizedList(new ArrayList());
+     *  List list = Collections.synchronizedList(new ArrayListTest());
      *      ...
      *  synchronized (list) {
      *      Iterator i = list.iterator(); // Must be in synchronized block
@@ -5232,7 +5232,7 @@ public class Collections {
      *         by the specified enumeration.
      * @since 1.4
      * @see Enumeration
-     * @see ArrayList
+     * @see ArrayListTest
      */
     public static <T> ArrayList<T> list(Enumeration<T> e) {
         ArrayList<T> l = new ArrayList<>();

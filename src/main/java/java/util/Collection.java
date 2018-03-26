@@ -132,7 +132,7 @@ import java.util.stream.StreamSupport;
  * @see     SortedMap
  * @see     HashSet
  * @see     TreeSet
- * @see     ArrayList
+ * @see     ArrayListTest
  * @see     LinkedList
  * @see     Vector
  * @see     Collections

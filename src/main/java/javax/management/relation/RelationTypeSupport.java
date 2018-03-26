@@ -223,7 +223,7 @@ public class RelationTypeSupport implements RelationType {
     }
 
     /**
-     * Returns the list of role definitions (ArrayList of RoleInfo objects).
+     * Returns the list of role definitions (ArrayListTest of RoleInfo objects).
      */
     public List<RoleInfo> getRoleInfos() {
         return new ArrayList<RoleInfo>(roleName2InfoMap.values());

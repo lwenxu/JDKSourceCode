@@ -46,7 +46,7 @@ import java.util.function.LongConsumer;
  *
  * <p> One or more arrays are used to store elements. The use of a multiple
  * arrays has better performance characteristics than a single array used by
- * {@link ArrayList}, as when the capacity of the list needs to be increased
+ * {@link ArrayListTest}, as when the capacity of the list needs to be increased
  * no copying of elements is required.  This is usually beneficial in the case
  * where the results will be traversed a small number of times.
  *
@@ -407,7 +407,7 @@ class SpinedBuffer<E>
      *
      * <p> One or more arrays are used to store elements. The use of a multiple
      * arrays has better performance characteristics than a single array used by
-     * {@link ArrayList}, as when the capacity of the list needs to be increased
+     * {@link ArrayListTest}, as when the capacity of the list needs to be increased
      * no copying of elements is required.  This is usually beneficial in the case
      * where the results will be traversed a small number of times.
      *

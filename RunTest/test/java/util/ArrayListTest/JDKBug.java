@@ -1,13 +1,12 @@
-package test;
+package java.util.ArrayListTest;
 
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class A{
 
 }
 
-class B extends A{
+class B extends A {
 
 }
 
@@ -17,6 +16,6 @@ public class JDKBug {
     public void test1() {
         B[] arrB = new B[10];
         A[] arrA = arrB;
-        arrA[0]=new A();
+        arrA[0]=new A();  // java.lang.ArrayStoreException
     }
 }

@@ -37,9 +37,9 @@ import java.util.List;
  *
  * @since 1.5
  */
-/* We cannot extend ArrayList<RoleUnresolved> because our legacy
-   add(RoleUnresolved) method would then override add(E) in ArrayList<E>,
-   and our return value is void whereas ArrayList.add(E)'s is boolean.
+/* We cannot extend ArrayListTest<RoleUnresolved> because our legacy
+   add(RoleUnresolved) method would then override add(E) in ArrayListTest<E>,
+   and our return value is void whereas ArrayListTest.add(E)'s is boolean.
    Likewise for set(int,RoleUnresolved).  Grrr.  We cannot use covariance
    to override the most important methods and have them return
    RoleUnresolved, either, because that would break subclasses that
@@ -47,7 +47,7 @@ import java.util.List;
    of Object).  Finally, we cannot implement Iterable<RoleUnresolved>
    so you could write
        for (RoleUnresolved r : roleUnresolvedList)
-   because ArrayList<> implements Iterable<> and the same class cannot
+   because ArrayListTest<> implements Iterable<> and the same class cannot
    implement two versions of a generic interface.  Instead we provide
    the asList() method so you can write
        for (RoleUnresolved r : roleUnresolvedList.asList())
@@ -95,7 +95,7 @@ public class RoleUnresolvedList extends ArrayList<Object> {
      * is {@code null} or if the {@code list} parameter contains any
      * non-RoleUnresolved objects.
      *
-     * @see ArrayList#ArrayList(java.util.Collection)
+     * @see ArrayListTest#ArrayList(java.util.Collection)
      */
     public RoleUnresolvedList(List<RoleUnresolved> list)
         throws IllegalArgumentException {
@@ -270,7 +270,7 @@ public class RoleUnresolvedList extends ArrayList<Object> {
     }
 
     /*
-     * Override all of the methods from ArrayList<Object> that might add
+     * Override all of the methods from ArrayListTest<Object> that might add
      * a non-RoleUnresolved to the List, and disallow that if asList has
      * ever been called on this instance.
      */

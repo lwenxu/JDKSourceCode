@@ -210,7 +210,7 @@
  *
  * Streams enable you to execute possibly-parallel aggregate operations over a
  * variety of data sources, including even non-thread-safe collections such as
- * {@code ArrayList}. This is possible only if we can prevent
+ * {@code ArrayListTest}. This is possible only if we can prevent
  * <em>interference</em> with the data source during the execution of a stream
  * pipeline.  Except for the escape-hatch operations {@code iterator()} and
  * {@code spliterator()}, execution begins when the terminal operation is
@@ -236,7 +236,7 @@
  * the covered elements.  For example, consider the following code:
  *
  * <pre>{@code
- *     List<String> l = new ArrayList(Arrays.asList("one", "two"));
+ *     List<String> l = new ArrayListTest(Arrays.asList("one", "two"));
  *     Stream<String> sl = l.stream();
  *     l.add("three");
  *     String s = sl.collect(joining(" "));
@@ -313,13 +313,13 @@
  * matches in a list.
  *
  * <pre>{@code
- *     ArrayList<String> results = new ArrayList<>();
+ *     ArrayListTest<String> results = new ArrayListTest<>();
  *     stream.filter(s -> pattern.matcher(s).matches())
  *           .forEach(s -> results.add(s));  // Unnecessary use of side-effects!
  * }</pre>
  *
  * This code unnecessarily uses side-effects.  If executed in parallel, the
- * non-thread-safety of {@code ArrayList} would cause incorrect results, and
+ * non-thread-safety of {@code ArrayListTest} would cause incorrect results, and
  * adding needed synchronization would cause contention, undermining the
  * benefit of parallelism.  Furthermore, using side-effects here is completely
  * unnecessary; the {@code forEach()} can simply be replaced with a reduction
@@ -516,17 +516,17 @@
  * accumulate partial results in parallel and then combine them, so long as the
  * accumulation and combining functions satisfy the appropriate requirements.
  * For example, to collect the String representations of the elements in a
- * stream into an {@code ArrayList}, we could write the obvious sequential
+ * stream into an {@code ArrayListTest}, we could write the obvious sequential
  * for-each form:
  * <pre>{@code
- *     ArrayList<String> strings = new ArrayList<>();
+ *     ArrayListTest<String> strings = new ArrayListTest<>();
  *     for (T element : stream) {
  *         strings.add(element.toString());
  *     }
  * }</pre>
  * Or we could use a parallelizable collect form:
  * <pre>{@code
- *     ArrayList<String> strings = stream.collect(() -> new ArrayList<>(),
+ *     ArrayListTest<String> strings = stream.collect(() -> new ArrayListTest<>(),
  *                                                (c, e) -> c.add(e.toString()),
  *                                                (c1, c2) -> c1.addAll(c2));
  * }</pre>
@@ -534,11 +534,11 @@
  * express it more succinctly as:
  * <pre>{@code
  *     List<String> strings = stream.map(Object::toString)
- *                                  .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+ *                                  .collect(ArrayListTest::new, ArrayListTest::add, ArrayListTest::addAll);
  * }</pre>
- * Here, our supplier is just the {@link java.util.ArrayList#ArrayList()
- * ArrayList constructor}, the accumulator adds the stringified element to an
- * {@code ArrayList}, and the combiner simply uses {@link java.util.ArrayList#addAll addAll}
+ * Here, our supplier is just the {@link java.util.ArrayListTest#ArrayList()
+ * ArrayListTest constructor}, the accumulator adds the stringified element to an
+ * {@code ArrayListTest}, and the combiner simply uses {@link java.util.ArrayListTest#addAll addAll}
  * to copy the strings from one container into the other.
  *
  * <p>The three aspects of {@code collect} -- supplier, accumulator, and
@@ -736,5 +736,4 @@
  */
 package java.util.stream;
 
-import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;

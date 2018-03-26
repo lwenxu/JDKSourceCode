@@ -66,9 +66,9 @@ package javax.management.openmbean;
  *
  *     public CompositeData toCompositeData(CompositeType ct) {
  *         try {
- *             {@code List<String> itemNames = new ArrayList<String>(ct.keySet());}
- *             {@code List<String> itemDescriptions = new ArrayList<String>();}
- *             {@code List<OpenType<?>> itemTypes = new ArrayList<OpenType<?>>();}
+ *             {@code List<String> itemNames = new ArrayListTest<String>(ct.keySet());}
+ *             {@code List<String> itemDescriptions = new ArrayListTest<String>();}
+ *             {@code List<OpenType<?>> itemTypes = new ArrayListTest<OpenType<?>>();}
  *             for (String item : itemNames) {
  *                 itemDescriptions.add(ct.getDescription(item));
  *                 itemTypes.add(ct.getType(item));

@@ -66,7 +66,7 @@ public interface Types {
      * but makes sense once you consider that an example like this must be
      * rejected by the compiler:
      * <pre>
-     *   {@code List<?> list = new ArrayList<Object>();}
+     *   {@code List<?> list = new ArrayListTest<Object>();}
      *   {@code list.add(list.get(0));}
      * </pre>
      *

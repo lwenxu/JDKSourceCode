@@ -75,7 +75,7 @@ import java.util.function.Consumer;
  *
  * @author  Josh Bloch
  * @see     List
- * @see     ArrayList
+ * @see     ArrayListTest
  * @since 1.2
  * @param <E> the type of elements held in this collection
  */
