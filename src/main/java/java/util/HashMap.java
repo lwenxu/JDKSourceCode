@@ -228,47 +228,17 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * The concurrent-programming-like SSA-based coding style helps
      * avoid aliasing errors amid all of the twisty pointer operations.
      */
-
-    /**
-     * The default initial capacity - MUST be a power of two.
-     */
+    // 默认大小 16
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
-
-    /**
-     * The maximum capacity, used if a higher value is implicitly specified
-     * by either of the constructors with arguments.
-     * MUST be a power of two <= 1<<30.
-     */
+    // 最大容量 2^30
     static final int MAXIMUM_CAPACITY = 1 << 30;
-
-    /**
-     * The load factor used when none specified in constructor.
-     */
+    // 负载因子
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
-
-    /**
-     * The bin count threshold for using a tree rather than list for a
-     * bin.  Bins are converted to trees when adding an element to a
-     * bin with at least this many nodes. The value must be greater
-     * than 2 and should be at least 8 to mesh with assumptions in
-     * tree removal about conversion back to plain bins upon
-     * shrinkage.
-     */
+    // 链表转成树，链表的长度 8
     static final int TREEIFY_THRESHOLD = 8;
-
-    /**
-     * The bin count threshold for untreeifying a (split) bin during a
-     * resize operation. Should be less than TREEIFY_THRESHOLD, and at
-     * most 6 to mesh with shrinkage detection under removal.
-     */
+    // 树转成链表时树大节点数 6
     static final int UNTREEIFY_THRESHOLD = 6;
-
-    /**
-     * The smallest table capacity for which bins may be treeified.
-     * (Otherwise the table is resized if too many nodes in a bin.)
-     * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts
-     * between resizing and treeification thresholds.
-     */
+    // ？？？
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
@@ -386,23 +356,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /* ---------------- Fields -------------- */
 
-    /**
-     * The table, initialized on first use, and resized as
-     * necessary. When allocated, length is always a power of two.
-     * (We also tolerate length zero in some operations to allow
-     * bootstrapping mechanics that are currently not needed.)
-     */
+    // Node 数组
     transient Node<K,V>[] table;
 
-    /**
-     * Holds cached entrySet(). Note that AbstractMap fields are used
-     * for keySet() and values().
-     */
-    transient Set<Map.Entry<K,V>> entrySet;
 
-    /**
-     * The number of key-value mappings contained in this map.
-     */
+    transient Set<Map.Entry<K,V>> entrySet;
+    // 大小
     transient int size;
 
     /**
@@ -423,6 +382,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     // Additionally, if the table array has not been allocated, this
     // field holds the initial array capacity, or zero signifying
     // DEFAULT_INITIAL_CAPACITY.)
+    // 阈值 他等于容量乘以负载因子
     int threshold;
 
     /**
@@ -434,16 +394,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
     /* ---------------- Public operations -------------- */
 
-    /**
-     * Constructs an empty <tt>HashMap</tt> with the specified initial
-     * capacity and load factor.
-     *
-     * @param  initialCapacity the initial capacity
-     * @param  loadFactor      the load factor
-     * @throws IllegalArgumentException if the initial capacity is negative
-     *         or the load factor is nonpositive
-     */
+    // 设置负载因子和初始大小
     public HashMap(int initialCapacity, float loadFactor) {
+        // 参数判断
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity: " +
                                                initialCapacity);
@@ -453,37 +406,21 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             throw new IllegalArgumentException("Illegal load factor: " +
                                                loadFactor);
         this.loadFactor = loadFactor;
+        // 这个方法就是把一个不是 2 的次幂的数转换成一个大于当前数的最小的 2 的次幂的数
         this.threshold = tableSizeFor(initialCapacity);
     }
 
-    /**
-     * Constructs an empty <tt>HashMap</tt> with the specified initial
-     * capacity and the default load factor (0.75).
-     *
-     * @param  initialCapacity the initial capacity.
-     * @throws IllegalArgumentException if the initial capacity is negative.
-     */
+    // 大小设置一下，负载因子默认
     public HashMap(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
-    /**
-     * Constructs an empty <tt>HashMap</tt> with the default initial capacity
-     * (16) and the default load factor (0.75).
-     */
+    // 设置负载因子为默认的 0.75
     public HashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
     }
 
-    /**
-     * Constructs a new <tt>HashMap</tt> with the same mappings as the
-     * specified <tt>Map</tt>.  The <tt>HashMap</tt> is created with
-     * default load factor (0.75) and an initial capacity sufficient to
-     * hold the mappings in the specified <tt>Map</tt>.
-     *
-     * @param   m the map whose mappings are to be placed in this map
-     * @throws  NullPointerException if the specified map is null
-     */
+    // putMapEntries 这个方法就是 new 新数组然后 foreach 拷贝
     public HashMap(Map<? extends K, ? extends V> m) {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
         putMapEntries(m, false);
@@ -499,6 +436,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
         int s = m.size();
         if (s > 0) {
+            // 初始化数组
             if (table == null) { // pre-size
                 float ft = ((float)s / loadFactor) + 1.0F;
                 int t = ((ft < (float)MAXIMUM_CAPACITY) ?
@@ -506,8 +444,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 if (t > threshold)
                     threshold = tableSizeFor(t);
             }
+            // 当前容量太小  扩容
             else if (s > threshold)
                 resize();
+            // 遍历然后 putVal
             for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
                 K key = e.getKey();
                 V value = e.getValue();
@@ -556,13 +496,6 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         return (e = getNode(hash(key), key)) == null ? null : e.value;
     }
 
-    /**
-     * Implements Map.get and related methods
-     *
-     * @param hash hash for key
-     * @param key the key
-     * @return the node, or null if none
-     */
 
     final Node<K,V> getNode(int hash, Object key) {
         Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
@@ -632,50 +565,51 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         Node<K,V>[] tab; Node<K,V> p; int n, i;
-        // 第一次 put 值的时候，会触发下面的 resize()，类似 java7 的第一次 put 也要初始化数组长度
+        // 第一次 put 值的时候，会触发下面的 resize()。这是因为我们调用了默认的无参的构造方法导致的，无参的里面只设置了负载因子
         // 第一次 resize 和后续的扩容有些不一样，因为这次是数组从 null 初始化到默认的 16 或自定义的初始容量
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
         // 找到具体的数组下标，如果此位置没有值，那么直接初始化一下 Node 并放置在这个位置就可以了
+        // 这个地方采用的 (n - 1) & hash 来寻找数组的下标，他和 hash%n 的效果一样的 但是仅仅限制在 n 是 2 的次幂
         if ((p = tab[i = (n - 1) & hash]) == null)
-            tab[i] = newNode(hash, key, value, null);
+            tab[i] = newNode(hash, key, value, null);//newNode 方法不用看  就直接 new
 
         else {// 数组该位置有数据
             Node<K,V> e; K k;
-            // 首先，判断该位置的第一个数据和我们要插入的数据，key 是不是"相等"，如果是，取出这个节点
+            // 首先，判断该位置的第一个数据和我们要插入的数据，key 是不是"相等"，如果是，把这个节点放到 e 里面
+            // 最后还有一个判断 e 是不是 null 然后对这个节点的 value 进行替换也就是说，如果 key 一样的话直接替换 vaule key 不一样说明是碰撞
             if (p.hash == hash &&
                     ((k = p.key) == key || (key != null && key.equals(k))))
                 e = p;
-                // 如果该节点是代表红黑树的节点，调用红黑树的插值方法，本文不展开说红黑树
+            // 下面两种情况都是碰撞处理
+            // 如果该节点是代表红黑树的节点，调用红黑树的插值方法，本文不展开说红黑树
             else if (p instanceof TreeNode)
                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+            // 数组该位置上是一个链表
             else {
-                // 到这里，说明数组该位置上是一个链表
+                // 循环找链表的最后一个节点
                 for (int binCount = 0; ; ++binCount) {
-                        // 插入到链表的最后面(Java7 是插入到链表的最前面)
-                        if ((e = p.next) == null) {
-                            p.next = newNode(hash, key, value, null);
-                            // TREEIFY_THRESHOLD 为 8，所以，如果新插入的值是链表中的第 9 个
-                            // 会触发下面的 treeifyBin，也就是将链表转换为红黑树
-                            if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
-                                treeifyBin(tab, hash);
-                            break;
-                        }
-                    // 如果在该链表中找到了"相等"的 key(== 或 equals)
+                    // 找到尾部就插入尾部 (Java7 是插入到链表的最前面)
+                    if ((e = p.next) == null) {
+                        p.next = newNode(hash, key, value, null);
+                        // TREEIFY_THRESHOLD 为 8，所以，如果新插入的值是链表中的第 9 个，会触发下面的 treeifyBin，也就是将链表转换为红黑树
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                            treeifyBin(tab, hash);
+                        break;
+                    }
+                    // 不可能发生，所以直接 break 了 ，这个条件在前面就过滤掉了，也就是 key 相同的情况应该进行 value 的替换
                     if (e.hash == hash &&
                             ((k = e.key) == key || (key != null && key.equals(k))))
-                        // 此时 break，那么 e 为链表中[与要插入的新值的 key "相等"]的 node
                         break;
                     p = e;
                 }
             }
-            // e!=null 说明存在旧值的key与要插入的key"相等"
-            // 对于我们分析的put操作，下面这个 if 其实就是进行 "值覆盖"，然后返回旧值
+            // e!=null 说明存在旧值的key与要插入的key"相等"，不是碰撞情况而是一致的 key 需替换返回老值
             if (e != null) {
                 V oldValue = e.value;
                 if (!onlyIfAbsent || oldValue == null)
                     e.value = value;
-                afterNodeAccess(e);
+                afterNodeAccess(e);  //这个操作是空操作  模板设计模式   是给 LinkedHashMap 使用的
                 return oldValue;
             }
         }
@@ -683,7 +617,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         // 如果 HashMap 由于新插入这个值导致 size 已经超过了阈值，需要进行扩容
         if (++size > threshold)
             resize();
-        afterNodeInsertion(evict);
+        afterNodeInsertion(evict); // 同 afterNodeAccess
         return null;
     }
 
@@ -704,7 +638,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         int newCap, newThr = 0;
         // 对应数组扩容
         if (oldCap > 0) {
-            //到极限了不扩容 只扩张阈值
+            //到极限了不扩容 修改阈值防止下一次又进入扩容操作
             if (oldCap >= MAXIMUM_CAPACITY) {
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
@@ -713,7 +647,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY && oldCap >= DEFAULT_INITIAL_CAPACITY)
                 newThr = oldThr << 1; // double threshold
         }
-        // 对应使用 new HashMap(int initialCapacity) 初始化后，第一次 put 的时候
+        // 对应使用两个有参的构造方法初始化后，第一次 put 的时候  也就是说 HashMap 在初始化的时候没有分配数组，空间是延时分配的
         else if (oldThr > 0)
             newCap = oldThr;
         // 对应使用 new HashMap() 初始化后，第一次 put 的时候
@@ -732,7 +666,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
         // 用新的数组大小初始化新的数组
         Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
-        table = newTab; // 如果是初始化数组，到这里就结束了，返回 newTab 即可
+        // 如果是初始化数组，到这里就结束了，返回 newTab 即可  接下来的操作就是数据迁移
+        table = newTab;
+
 
         if (oldTab != null) {
             // 开始遍历原数组，进行数据迁移。
@@ -743,25 +679,25 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                     // 如果该数组位置上只有单个元素，那就简单了，简单迁移这个元素就可以了
                     if (e.next == null)
                         newTab[e.hash & (newCap - 1)] = e;
-                        // 如果是红黑树，具体我们就不展开了
+                    // 如果是红黑树，就进行分裂操作
                     else if (e instanceof TreeNode)
                         ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                    // 链表的话就要把这些数据迁移到对应的位置 ，注意不是直接把整个链表放到数组的新位置  而是拆成两个链表
                     else {
-                        // 这块是处理链表的情况，
-                        // 需要将此链表拆成两个链表，放到新的数组中，并且保留原来的先后顺序
+                        // 这块是处理链表的情况，需要将此链表拆成两个链表，放到新的数组中，并且保留原来的先后顺序
                         // loHead、loTail 对应一条链表，hiHead、hiTail 对应另一条链表，代码还是比较简单的
                         Node<K,V> loHead = null, loTail = null;
                         Node<K,V> hiHead = null, hiTail = null;
                         Node<K,V> next;
 
-                        //拆分的步骤
+                        //一条链表拆成两条
                         do {
                             next = e.next;
                             //这里就是用了一个条件拆分成了两条链表
                             //他代码这样写的原因在于：oldCap 是一个2的次幂，那么也就是说 他是形如 "100000000...000" 这个格式的
                             //那么任何一个数和他相与必然只有两种结果 0 / 非0 就看最高位，其他位出来肯定是0  这样就区分了两个链表  巧妙！
                             if ((e.hash & oldCap) == 0) {
-                                //这里面的逻辑就不用说了其实就是链表的顺序连接
+                                //这里面的逻辑其实就是链表按照原来的顺序连接  也就是说原来 a 在 c 前面只要 ac 在同一条链表上 a 就在 c 前面
                                 if (loTail == null)
                                     loHead = e;
                                 else
@@ -769,7 +705,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                                 loTail = e;
                             }
                             else {
-                                //这里面的逻辑就不用说了其实就是链表的顺序连接  同上
+                                // 同上
                                 if (hiTail == null)
                                     hiHead = e;
                                 else
@@ -781,7 +717,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                         //用来把两条链表分别挂在正确的数组位置
                         if (loTail != null) {
                             loTail.next = null;
-                            // 第一条链表
+                            // 第一条链表新位置就是原来的位置
                             newTab[j] = loHead;
                         }
                         if (hiTail != null) {
@@ -849,16 +785,6 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             null : e.value;
     }
 
-    /**
-     * Implements Map.remove and related methods
-     *
-     * @param hash hash for key
-     * @param key the key
-     * @param value the value to match if matchValue, else ignored
-     * @param matchValue if true only remove if value is equal
-     * @param movable if false do not move other nodes while removing
-     * @return the node, or null if none
-     */
     final Node<K,V> removeNode(int hash, Object key, Object value,
                                boolean matchValue, boolean movable) {
         Node<K,V>[] tab; Node<K,V> p; int n, index;

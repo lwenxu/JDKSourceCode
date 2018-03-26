@@ -405,6 +405,7 @@ public class Hashtable<K,V>
         table = newMap;
 
         for (int i = oldCapacity ; i-- > 0 ;) {
+            // 倒序插入到新的数组中，也就是老链表从头到尾遍历的节点头插到新的链表的头。
             for (Entry<K,V> old = (Entry<K,V>)oldMap[i] ; old != null ; ) {
                 Entry<K,V> e = old;
                 old = old.next;
@@ -462,6 +463,12 @@ public class Hashtable<K,V>
         // Makes sure the key is not already in the hashtable.
         Entry<?,?> tab[] = table;
         int hash = key.hashCode();
+        /*
+        关键在于一个对象的 HashCode可以为负数，这样操作后可以保证它为一个正整数
+        0x7FFFFFFF is 0111 1111 1111 1111 1111 1111 1111 1111
+        (hash & 0x7FFFFFFF) 将会得到一个正整数
+        因为hash是要作为数组的index的，这样可以避免出现下标为负数而出现异常
+         */
         int index = (hash & 0x7FFFFFFF) % tab.length;
         @SuppressWarnings("unchecked")
         Entry<K,V> entry = (Entry<K,V>)tab[index];

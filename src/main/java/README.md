@@ -1,6 +1,6 @@
 ## 2018/3/25  ChangeLogs
-1.初始化仓库，其实这份源码之前有阅读过一点,有一些注释现在正是开始同步写博客分析 Java8 源码
-2.博客地址 lwenxu.github.io
+1. 初始化仓库，其实这份源码之前有阅读过一点,有一些注释现在正是开始同步写博客分析 Java8 源码
+2. 博客地址 <https://lwenxu.github.io>
 ### ArrayList
 1. ctor-3
 2. get
@@ -43,3 +43,13 @@ different with ArrayList
 17. remove(noArgs) == removeFirst  继承自 deque
 18. remove(E e) 查找删除
 19. read/writeObject  还是手动的序列化，原因一样，直接序列化元素而没有 pre/next
+
+### HashMap
+1. cotr-4
+2. put/putVal
+4. resize
+5. putAll/putMapEntries
+6. get/getNode/containsKey 
+7. remove/removeNode/clear
+8. containsValue
+9. read/writeObject

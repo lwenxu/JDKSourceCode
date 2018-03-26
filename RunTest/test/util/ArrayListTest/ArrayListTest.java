@@ -1,4 +1,4 @@
-package java.util.ArrayListTest;
+package util.ArrayListTest;
 
 import org.junit.jupiter.api.Test;
 
