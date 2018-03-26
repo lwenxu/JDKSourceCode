@@ -100,20 +100,10 @@ public class LinkedList<E>
      */
     transient Node<E> last;
 
-    /**
-     * Constructs an empty list.
-     */
+
     public LinkedList() {
     }
 
-    /**
-     * Constructs a list containing the elements of the specified
-     * collection, in the order they are returned by the collection's
-     * iterator.
-     *
-     * @param  c the collection whose elements are to be placed into this list
-     * @throws NullPointerException if the specified collection is null
-     */
     public LinkedList(Collection<? extends E> c) {
         this();
         addAll(c);
@@ -293,26 +283,10 @@ public class LinkedList<E>
         linkFirst(e);
     }
 
-    /**
-     * Appends the specified element to the end of this list.
-     *
-     * <p>This method is equivalent to {@link #add}.
-     *
-     * @param e the element to add
-     */
     public void addLast(E e) {
         linkLast(e);
     }
 
-    /**
-     * Returns {@code true} if this list contains the specified element.
-     * More formally, returns {@code true} if and only if this list contains
-     * at least one element {@code e} such that
-     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     *
-     * @param o element whose presence in this list is to be tested
-     * @return {@code true} if this list contains the specified element
-     */
     public boolean contains(Object o) {
         return indexOf(o) != -1;
     }

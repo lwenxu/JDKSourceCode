@@ -17,3 +17,29 @@
 13. sort
 14. removeIf
 
+### Vector
+different with ArrayList
+
+
+## 2018/3/26  ChangeLogs
+
+### LinkedList
+1. ctor-2
+2. addFirst
+3. addLast
+4. addAll
+5. add
+6. indexOf
+7. lastIndexOf
+8. peek 获取第一个元素，是 null 就返回 null
+9. peekFirst/Last  获取第一个最后一个元素
+10. poll 删除第一个元素并返回 没有返回 null
+11. pollFirst/Last 
+12. offer 调用了 add
+13. offerFirst/Last
+14. push
+15. pop
+16. set
+17. remove(noArgs) == removeFirst  继承自 deque
+18. remove(E e) 查找删除
+19. read/writeObject  还是手动的序列化，原因一样，直接序列化元素而没有 pre/next
