@@ -70,3 +70,23 @@ different with ArrayList
 2. add
 3. remove
 4. read/writeObject
+
+### LinkedHashSet
+1. ctor-3
+
+### ConcurrentHashMap
+1. ctor-4 延时加载
+
+size
+sumCount
+[o]get
+[o]containsKey/Value（Traverser对象）
+[o]put/putVal/initTable
+[o]tableAt/casTableAt/setTableAt
+[o]tryPresize
+[o]helpTransfer
+[o] transfer
+[o]treeifyBin
+[o]remove/replaceNode
+clear
+read/writeObject
