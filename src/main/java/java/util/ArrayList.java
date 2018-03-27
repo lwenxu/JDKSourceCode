@@ -149,6 +149,7 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
      * @throws NullPointerException if the specified collection is null
      */
     public ArrayList(Collection<? extends E> c) {
+        // 直接复用了原来的数组空间。
         elementData = c.toArray();
         if ((size = elementData.length) != 0) {
             // c.toArray might (incorrectly) not return Object[] (see 6260652)
