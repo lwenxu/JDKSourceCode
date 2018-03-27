@@ -115,9 +115,13 @@ package java.util;
  * @since   1.4
  */
 
-public class LinkedHashSet<E>
-    extends HashSet<E>
-    implements Set<E>, Cloneable, java.io.Serializable {
+
+/**
+ * 构造方法全部都调用的有 bool 参数的那个。以获得底层数据结构为 LinkedHashMap
+ * @param <E>
+ */
+
+public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, java.io.Serializable {
 
     private static final long serialVersionUID = -2851667679971038690L;
 
