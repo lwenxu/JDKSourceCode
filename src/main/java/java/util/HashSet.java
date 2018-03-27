@@ -147,7 +147,7 @@ public class HashSet<E>
     /**
      * Constructs a new, empty linked hash set.  (This package private
      * constructor is only used by LinkedHashSet.) The backing
-     * HashMap instance is a LinkedHashMap with the specified initial
+     * HashMap instance is a LinkedHashMapTest with the specified initial
      * capacity and the specified load factor.
      *
      * @param      initialCapacity   the initial capacity of the hash map

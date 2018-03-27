@@ -146,7 +146,7 @@ public class TabularDataSupport
         List<String> tmpNames = tabularType.getIndexNames();
         this.indexNamesArray = tmpNames.toArray(new String[tmpNames.size()]);
 
-        // Since LinkedHashMap was introduced in SE 1.4, it's conceivable even
+        // Since LinkedHashMapTest was introduced in SE 1.4, it's conceivable even
         // if very unlikely that we might be the server of a 1.3 client.  In
         // that case you'll need to set this property.  See CR 6334663.
         String useHashMapProp = AccessController.doPrivileged(

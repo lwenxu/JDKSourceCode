@@ -45,7 +45,7 @@ different with ArrayList
 19. read/writeObject  还是手动的序列化，原因一样，直接序列化元素而没有 pre/next
 
 ### HashMap
-1. cotr-4
+1. ctor-4
 2. put/putVal
 4. resize
 5. putAll/putMapEntries
@@ -53,3 +53,12 @@ different with ArrayList
 7. remove/removeNode/clear
 8. containsValue
 9. read/writeObject
+
+### LinkedHashMap
+1. ctor-5  最重要的能实现 LRU 的是设置 accessOrder 的那个
+2. afterNodeRemoval
+3. afterNodeInsertion
+4. afterNodeAccess
+5. containsValue
+6. get
+7. removeEldestEntry

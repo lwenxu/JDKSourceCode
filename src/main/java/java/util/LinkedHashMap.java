@@ -49,7 +49,7 @@ import java.io.IOException;
  * original, regardless of the original map's implementation:
  * <pre>
  *     void foo(Map m) {
- *         Map copy = new LinkedHashMap(m);
+ *         Map copy = new LinkedHashMapTest(m);
  *         ...
  *     }
  * </pre>
@@ -85,7 +85,7 @@ import java.io.IOException;
  * properly among the buckets.  Performance is likely to be just slightly
  * below that of <tt>HashMap</tt>, due to the added expense of maintaining the
  * linked list, with one exception: Iteration over the collection-views
- * of a <tt>LinkedHashMap</tt> requires time proportional to the <i>size</i>
+ * of a <tt>LinkedHashMapTest</tt> requires time proportional to the <i>size</i>
  * of the map, regardless of its capacity.  Iteration over a <tt>HashMap</tt>
  * is likely to be more expensive, requiring time proportional to its
  * <i>capacity</i>.
@@ -107,7 +107,7 @@ import java.io.IOException;
  * {@link Collections#synchronizedMap Collections.synchronizedMap}
  * method.  This is best done at creation time, to prevent accidental
  * unsynchronized access to the map:<pre>
- *   Map m = Collections.synchronizedMap(new LinkedHashMap(...));</pre>
+ *   Map m = Collections.synchronizedMap(new LinkedHashMapTest(...));</pre>
  *
  * A structural modification is any operation that adds or deletes one or more
  * mappings or, in the case of access-ordered linked hash maps, affects
@@ -160,18 +160,16 @@ import java.io.IOException;
  * @see     Hashtable
  * @since   1.4
  */
-public class LinkedHashMap<K,V>
-    extends HashMap<K,V>
-    implements Map<K,V>
+public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
 {
 
     /*
      * Implementation note.  A previous version of this class was
      * internally structured a little differently. Because superclass
      * HashMap now uses trees for some of its nodes, class
-     * LinkedHashMap.Entry is now treated as intermediary node class
+     * LinkedHashMapTest.Entry is now treated as intermediary node class
      * that can also be converted to tree form. The name of this
-     * class, LinkedHashMap.Entry, is confusing in several ways in its
+     * class, LinkedHashMapTest.Entry, is confusing in several ways in its
      * current context, but cannot be changed.  Otherwise, even though
      * it is not exported outside this package, some existing source
      * code is known to have relied on a symbol resolution corner case
@@ -187,7 +185,7 @@ public class LinkedHashMap<K,V>
      */
 
     /**
-     * HashMap.Node subclass for normal LinkedHashMap entries.
+     * HashMap.Node subclass for normal LinkedHashMapTest entries.
      */
     static class Entry<K,V> extends HashMap.Node<K,V> {
         Entry<K,V> before, after;
@@ -198,22 +196,13 @@ public class LinkedHashMap<K,V>
 
     private static final long serialVersionUID = 3801124242820219131L;
 
-    /**
-     * The head (eldest) of the doubly linked list.
-     */
+    // 双向链表的头结点
     transient LinkedHashMap.Entry<K,V> head;
 
-    /**
-     * The tail (youngest) of the doubly linked list.
-     */
+    // 双向链表的尾节点
     transient LinkedHashMap.Entry<K,V> tail;
 
-    /**
-     * The iteration ordering method for this linked hash map: <tt>true</tt>
-     * for access-order, <tt>false</tt> for insertion-order.
-     *
-     * @serial
-     */
+    //  决定是否进行 LRU 算法
     final boolean accessOrder;
 
     // internal utilities
@@ -247,6 +236,7 @@ public class LinkedHashMap<K,V>
 
     // overrides of HashMap hook methods
 
+    // 初始化双链表
     void reinitialize() {
         super.reinitialize();
         head = tail = null;
@@ -280,6 +270,7 @@ public class LinkedHashMap<K,V>
         return t;
     }
 
+    // 这个方法还 ok 就是修改一下双向指针
     void afterNodeRemoval(Node<K,V> e) { // unlink
         LinkedHashMap.Entry<K,V> p =
             (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
@@ -294,14 +285,18 @@ public class LinkedHashMap<K,V>
             a.before = b;
     }
 
+    // 插入新的节点以后，如果说定义了删除老元素的方法，这个方法返回 true 的话就直接删除原来的旧元素 注意老元素是在头部  所以删除头部的元素即可
+    // 在这个地方是不做人事事情的 removeEldestEntry  返回了 false
     void afterNodeInsertion(boolean evict) { // possibly remove eldest
         LinkedHashMap.Entry<K,V> first;
         if (evict && (first = head) != null && removeEldestEntry(first)) {
+            // 删除头部元素
             K key = first.key;
             removeNode(hash(key), key, null, false, true);
         }
     }
 
+    // 如果accessOrder 为 true，也就是支持 LRU 算法，那么就把这个元素先从双向链表中删除（在数组中的位置不变），然后插到链表的头部作为最新的元素
     void afterNodeAccess(Node<K,V> e) { // move node to last
         LinkedHashMap.Entry<K,V> last;
         if (accessOrder && (last = tail) != e) {
@@ -335,7 +330,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
-     * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
+     * Constructs an empty insertion-ordered <tt>LinkedHashMapTest</tt> instance
      * with the specified initial capacity and load factor.
      *
      * @param  initialCapacity the initial capacity
@@ -349,7 +344,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
-     * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
+     * Constructs an empty insertion-ordered <tt>LinkedHashMapTest</tt> instance
      * with the specified initial capacity and a default load factor (0.75).
      *
      * @param  initialCapacity the initial capacity
@@ -361,7 +356,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
-     * Constructs an empty insertion-ordered <tt>LinkedHashMap</tt> instance
+     * Constructs an empty insertion-ordered <tt>LinkedHashMapTest</tt> instance
      * with the default initial capacity (16) and load factor (0.75).
      */
     public LinkedHashMap() {
@@ -370,8 +365,8 @@ public class LinkedHashMap<K,V>
     }
 
     /**
-     * Constructs an insertion-ordered <tt>LinkedHashMap</tt> instance with
-     * the same mappings as the specified map.  The <tt>LinkedHashMap</tt>
+     * Constructs an insertion-ordered <tt>LinkedHashMapTest</tt> instance with
+     * the same mappings as the specified map.  The <tt>LinkedHashMapTest</tt>
      * instance is created with a default load factor (0.75) and an initial
      * capacity sufficient to hold the mappings in the specified map.
      *
@@ -385,7 +380,7 @@ public class LinkedHashMap<K,V>
     }
 
     /**
-     * Constructs an empty <tt>LinkedHashMap</tt> instance with the
+     * Constructs an empty <tt>LinkedHashMapTest</tt> instance with the
      * specified initial capacity, load factor and ordering mode.
      *
      * @param  initialCapacity the initial capacity
@@ -403,15 +398,9 @@ public class LinkedHashMap<K,V>
     }
 
 
-    /**
-     * Returns <tt>true</tt> if this map maps one or more keys to the
-     * specified value.
-     *
-     * @param value value whose presence in this map is to be tested
-     * @return <tt>true</tt> if this map maps one or more keys to the
-     *         specified value
-     */
+    // 重写了 containsValue 因为有了双链表了遍历起来更方便
     public boolean containsValue(Object value) {
+        // after 指针
         for (LinkedHashMap.Entry<K,V> e = head; e != null; e = e.after) {
             V v = e.value;
             if (v == value || (value != null && value.equals(v)))
@@ -420,33 +409,18 @@ public class LinkedHashMap<K,V>
         return false;
     }
 
-    /**
-     * Returns the value to which the specified key is mapped,
-     * or {@code null} if this map contains no mapping for the key.
-     *
-     * <p>More formally, if this map contains a mapping from a key
-     * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
-     * key.equals(k))}, then this method returns {@code v}; otherwise
-     * it returns {@code null}.  (There can be at most one such mapping.)
-     *
-     * <p>A return value of {@code null} does not <i>necessarily</i>
-     * indicate that the map contains no mapping for the key; it's also
-     * possible that the map explicitly maps the key to {@code null}.
-     * The {@link #containsKey containsKey} operation may be used to
-     * distinguish these two cases.
-     */
+    // 重写了，获取元素以后，如果用了 LRU 需要重新排列该元素的位置
     public V get(Object key) {
         Node<K,V> e;
         if ((e = getNode(hash(key), key)) == null)
             return null;
+        // 重新排列该元素位置
         if (accessOrder)
             afterNodeAccess(e);
         return e.value;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    // default 值方法
     public V getOrDefault(Object key, V defaultValue) {
        Node<K,V> e;
        if ((e = getNode(hash(key), key)) == null)
@@ -464,47 +438,9 @@ public class LinkedHashMap<K,V>
         head = tail = null;
     }
 
-    /**
-     * Returns <tt>true</tt> if this map should remove its eldest entry.
-     * This method is invoked by <tt>put</tt> and <tt>putAll</tt> after
-     * inserting a new entry into the map.  It provides the implementor
-     * with the opportunity to remove the eldest entry each time a new one
-     * is added.  This is useful if the map represents a cache: it allows
-     * the map to reduce memory consumption by deleting stale entries.
-     *
-     * <p>Sample use: this override will allow the map to grow up to 100
-     * entries and then delete the eldest entry each time a new entry is
-     * added, maintaining a steady state of 100 entries.
-     * <pre>
-     *     private static final int MAX_ENTRIES = 100;
-     *
-     *     protected boolean removeEldestEntry(Map.Entry eldest) {
-     *        return size() &gt; MAX_ENTRIES;
-     *     }
-     * </pre>
-     *
-     * <p>This method typically does not modify the map in any way,
-     * instead allowing the map to modify itself as directed by its
-     * return value.  It <i>is</i> permitted for this method to modify
-     * the map directly, but if it does so, it <i>must</i> return
-     * <tt>false</tt> (indicating that the map should not attempt any
-     * further modification).  The effects of returning <tt>true</tt>
-     * after modifying the map from within this method are unspecified.
-     *
-     * <p>This implementation merely returns <tt>false</tt> (so that this
-     * map acts like a normal map - the eldest element is never removed).
-     *
-     * @param    eldest The least recently inserted entry in the map, or if
-     *           this is an access-ordered map, the least recently accessed
-     *           entry.  This is the entry that will be removed it this
-     *           method returns <tt>true</tt>.  If the map was empty prior
-     *           to the <tt>put</tt> or <tt>putAll</tt> invocation resulting
-     *           in this invocation, this will be the entry that was just
-     *           inserted; in other words, if the map contains a single
-     *           entry, the eldest entry is also the newest.
-     * @return   <tt>true</tt> if the eldest entry should be removed
-     *           from the map; <tt>false</tt> if it should be retained.
-     */
+    // 这个方法是用来被覆盖的，也就是子类来用，本类用不着。
+    // 如果有必要，则删除掉该近期最少使用的节点，
+    // 这要看对removeEldestEntry的覆写,由于默认为false，因此默认是不做任何处理的。
     protected boolean removeEldestEntry(Map.Entry<K,V> eldest) {
         return false;
     }
@@ -716,7 +652,7 @@ public class LinkedHashMap<K,V>
         final LinkedHashMap.Entry<K,V> nextNode() {
             LinkedHashMap.Entry<K,V> e = next;
             if (modCount != expectedModCount)
-                throw new ConcurrentModificationException();
+            throw new ConcurrentModificationException();
             if (e == null)
                 throw new NoSuchElementException();
             current = e;
