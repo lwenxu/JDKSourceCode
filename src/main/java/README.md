@@ -62,3 +62,11 @@ different with ArrayList
 5. containsValue
 6. get
 7. removeEldestEntry
+
+## 2018/3/27  ChangeLogs
+
+### HashSet
+1. ctor-5
+2. add
+3. remove
+4. read/writeObject
