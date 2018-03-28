@@ -20,6 +20,11 @@ public class ConcurrentHashMapTest {
     public void addCount() {
         ConcurrentHashMap<String, String> hashMap = new ConcurrentHashMap();
         hashMap.put("1", "1");
+        hashMap.size();
+    }
+
+    @Test
+    public void count() {
 
     }
 }

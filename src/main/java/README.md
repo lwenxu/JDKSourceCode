@@ -88,5 +88,5 @@ sumCount
 [o] transfer
 [o]treeifyBin
 [o]remove/replaceNode
-clear
-read/writeObject
+[o]clear
+[o]read/writeObject

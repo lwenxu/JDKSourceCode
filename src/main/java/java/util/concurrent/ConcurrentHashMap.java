@@ -570,9 +570,9 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
      */
     public int size() {
         long n = sumCount();
-        return ((n < 0L) ? 0 :
-                (n > (long) Integer.MAX_VALUE) ? Integer.MAX_VALUE :
-                        (int) n);
+        // 如果有一些奇怪的值，比如大于最大小于最小就设置为最大，或者最小
+        // 否则就是正常的值
+        return ((n < 0L) ? 0 : (n > (long) Integer.MAX_VALUE) ? Integer.MAX_VALUE : (int) n);
     }
 
     /**
@@ -851,7 +851,8 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
      * Removes all of the mappings from this map.
      */
     public void clear() {
-        long delta = 0L; // negative number of deletions
+        // 这个变量记录了要删除的节点数的负数
+        long delta = 0L;
         int i = 0;
         Node<K, V>[] tab = table;
         while (tab != null && i < tab.length) {
@@ -868,13 +869,15 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
             } else {
                 synchronized (f) {
                     if (tabAt(tab, i) == f) {
-                        Node<K, V> p = (fh >= 0 ? f :
-                                (f instanceof TreeBin) ?
-                                        ((TreeBin<K, V>) f).first : null);
+                        // 如果是链表节点就返回链表头
+                        // 如果是树节点就返回他的下一个 否则返回 null
+                        Node<K, V> p = (fh >= 0 ? f : (f instanceof TreeBin) ? ((TreeBin<K, V>) f).first : null);
+                        // 遍历链表或者树
                         while (p != null) {
                             --delta;
                             p = p.next;
                         }
+                        // 直接把数组对应的位置设置为 null
                         setTabAt(tab, i++, null);
                     }
                 }
@@ -1941,16 +1944,12 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
     private final void addCount(long x, int check) {
         CounterCell[] as;
         long b, s;
-        if ((as = counterCells) != null ||
-                !U.compareAndSwapLong(this, BASECOUNT, b = baseCount, s = b + x)) {
+        if ((as = counterCells) != null || !U.compareAndSwapLong(this, BASECOUNT, b = baseCount, s = b + x)) {
             CounterCell a;
             long v;
             int m;
             boolean uncontended = true;
-            if (as == null || (m = as.length - 1) < 0 ||
-                    (a = as[ThreadLocalRandom.getProbe() & m]) == null ||
-                    !(uncontended =
-                            U.compareAndSwapLong(a, CELLVALUE, v = a.value, v + x))) {
+            if (as == null || (m = as.length - 1) < 0 || (a = as[ThreadLocalRandom.getProbe() & m]) == null || !(uncontended = U.compareAndSwapLong(a, CELLVALUE, v = a.value, v + x))) {
                 fullAddCount(x, uncontended);
                 return;
             }
