@@ -2012,8 +2012,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
      */
     private final void tryPresize(int size) {
         // c：size*1.5+1 ，再往上取最近的 2 的 n 次方。
-        int c = (size >= (MAXIMUM_CAPACITY >>> 1)) ? MAXIMUM_CAPACITY :
-                tableSizeFor(size + (size >>> 1) + 1);
+        int c = (size >= (MAXIMUM_CAPACITY >>> 1)) ? MAXIMUM_CAPACITY : tableSizeFor(size + (size >>> 1) + 1);
         int sc;
         // sizeCtl > 0 表示下次扩容的阈值
         while ((sc = sizeCtl) >= 0) {
@@ -2040,7 +2039,6 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
                 break;
             // 进行扩容操作
             else if (tab == table) {
-                // 我没看懂 rs 的真正含义是什么，不过也关系不大
                 int rs = resizeStamp(n);
                 // 不可能发生
                 if (sc < 0) {
@@ -2055,7 +2053,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
                     if (U.compareAndSwapInt(this, SIZECTL, sc, sc + 1))
                         transfer(tab, nt);
                 }
-                // 1. 将 SIZECTL（这个是全局的常量不是 sizeCtl 属性） 设置为 (rs << RESIZE_STAMP_SHIFT) + 2  这个值等于
+                // 1. 将 SIZECTL 设置为 (rs << RESIZE_STAMP_SHIFT) + 2  这个值等于
                 //  (n的32位二进制中空位数 << 16 ) + 2 肯定是正数 也就是下次扩容的阈值
                 //  调用 transfer 方法，此时 nextTab 参数为 null
 
@@ -2181,7 +2179,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
                             Node<K, V> lastRun = f;
                             // p.hash & n 其实是取某一特定的位，只能是 0/1 所以这个做法是把原来一个链表分成两个
                             // lastRun 指向最后一段 runBit 相同的连续的节点的开始
-                            // 感觉这一段代码写得有点蠢，就是为了找到最后一段完整的同类型的节点遍历了整个链表
+                            // 感觉这一段代码写得有点蠢，就是为了找到最后一段完整的同类型的节点遍历了整个链表 ？ 还是我理解错了？
                             for (Node<K, V> p = f.next; p != null; p = p.next) {
                                 int b = p.hash & n;
                                 if (b != runBit) {
