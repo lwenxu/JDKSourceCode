@@ -90,3 +90,7 @@ different with ArrayList
 11. remove/replaceNode
 12. clear
 13. read/writeObject
+
+## 2018/3/29  ChangeLogs
+
+Synchronized keyword
