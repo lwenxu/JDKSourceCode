@@ -77,16 +77,16 @@ different with ArrayList
 ### ConcurrentHashMap
 1. ctor-4 延时加载
 
-size
-sumCount
-[o]get
-[o]containsKey/Value（Traverser对象）
-[o]put/putVal/initTable
-[o]tableAt/casTableAt/setTableAt
-[o]tryPresize
-[o]helpTransfer
-[o] transfer
-[o]treeifyBin
-[o]remove/replaceNode
-[o]clear
-[o]read/writeObject
+1. size
+2. sumCount
+3. get
+4. containsKey/Value（Traverser对象）
+5. put/putVal/initTable
+6. tableAt/casTableAt/setTableAt
+7. tryPresize
+8. helpTransfer
+9.  transfer
+10. treeifyBin
+11. remove/replaceNode
+12. clear
+13. read/writeObject

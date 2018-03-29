@@ -532,9 +532,7 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
             throw new IllegalArgumentException();
         // 如果要开的数组比最大的一半还大，那就直接分配最大容量
         // 否则分配 1.5n+1 向上取 2^n
-        int cap = ((initialCapacity >= (MAXIMUM_CAPACITY >>> 1)) ?
-                MAXIMUM_CAPACITY :
-                tableSizeFor(initialCapacity + (initialCapacity >>> 1) + 1));
+        int cap = ((initialCapacity >= (MAXIMUM_CAPACITY >>> 1)) ? MAXIMUM_CAPACITY : tableSizeFor(initialCapacity + (initialCapacity >>> 1) + 1));
         this.sizeCtl = cap;
     }
 
@@ -3091,15 +3089,16 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V> implements Concur
                 int i, n;  // must use locals in checks
                 if (e != null)
                     return next = e;
-                if (baseIndex >= baseLimit || (t = tab) == null ||
-                        (n = t.length) <= (i = index) || i < 0)
+                if (baseIndex >= baseLimit || (t = tab) == null || (n = t.length) <= (i = index) || i < 0)
                     return next = null;
                 if ((e = tabAt(t, i)) != null && e.hash < 0) {
+                    // 等价于 hash = MOVED  说明在 transfer 就更换到新表
                     if (e instanceof ForwardingNode) {
                         tab = ((ForwardingNode<K, V>) e).nextTable;
                         e = null;
                         pushState(t, i, n);
                         continue;
+                    // 树节点
                     } else if (e instanceof TreeBin)
                         e = ((TreeBin<K, V>) e).first;
                     else
