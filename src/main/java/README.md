@@ -94,3 +94,12 @@ different with ArrayList
 ## 2018/3/29  ChangeLogs
 
 Synchronized keyword   javap -c/v 
+
+## 2018/3/30  ChangeLogs
+1. ctor-2
+2. lock
+3. lockInterruptibly
+4. tryLock
+5. tryLock(time)
+6. unlock
+7. newCondition
