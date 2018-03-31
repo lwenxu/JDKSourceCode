@@ -96,6 +96,7 @@ different with ArrayList
 Synchronized keyword   javap -c/v 
 
 ## 2018/3/30  ChangeLogs
+### Lock interface
 1. ctor-2
 2. lock
 3. lockInterruptibly
@@ -103,3 +104,15 @@ Synchronized keyword   javap -c/v
 5. tryLock(time)
 6. unlock
 7. newCondition
+
+### Condition/Node inner class in AQS
+1. await
+2. notify
+3. notifyAll
+
+### AQS
+1. get/setState
+2. release/tryRelease/unparkSuccessor/fullyRelease
+3. acquire/tryAcquire/addWaiter/tryQueued
+4. acquireShared
+5. releaseShared
