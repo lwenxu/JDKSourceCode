@@ -745,17 +745,23 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
         }
     }
 
-    /**
-     * Acquires in shared interruptible mode.
-     * @param arg the acquire argument
+    // 这个方法真的是似曾相识，感觉就是 acquireQueued 的方法稍稍修改了一下
+    /*
+        1. 那个方法不抛异常
+        2. 那个方法在调用前把节点加入了等待队列，封装了独占锁
+        3. 那个方法设置标志位，这里直接抛异常
+
      */
-    private void doAcquireSharedInterruptibly(int arg)
-        throws InterruptedException {
+    private void doAcquireSharedInterruptibly(int arg) throws InterruptedException {
+        // 加入等待队列
         final Node node = addWaiter(Node.SHARED);
         boolean failed = true;
         try {
             for (;;) {
+                // 前驱
                 final Node p = node.predecessor();
+                // 如果前驱是 head 。自旋获取锁  简直一样！！！
+                // 就是写法不一样，意思一模一样
                 if (p == head) {
                     int r = tryAcquireShared(arg);
                     if (r >= 0) {
@@ -765,8 +771,8 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
                         return;
                     }
                 }
-                if (shouldParkAfterFailedAcquire(p, node) &&
-                    parkAndCheckInterrupt())
+                // 那个方法设置标志位，这里直接抛异常
+                if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
                     throw new InterruptedException();
             }
         } finally {
@@ -1053,9 +1059,12 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
      */
     public final void acquireSharedInterruptibly(int arg)
             throws InterruptedException {
+        // 可中断
         if (Thread.interrupted())
             throw new InterruptedException();
+        // 获取锁失败
         if (tryAcquireShared(arg) < 0)
+            // 加入同步队列
             doAcquireSharedInterruptibly(arg);
     }
 

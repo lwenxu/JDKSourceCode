@@ -155,7 +155,7 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  */
 public class Semaphore implements java.io.Serializable {
     private static final long serialVersionUID = -3222578661600680210L;
-    /** All mechanics via AbstractQueuedSynchronizer subclass */
+    // 锁
     private final Sync sync;
 
     /**
@@ -246,8 +246,7 @@ public class Semaphore implements java.io.Serializable {
                     return -1;
                 int available = getState();
                 int remaining = available - acquires;
-                if (remaining < 0 ||
-                    compareAndSetState(available, remaining))
+                if (remaining < 0 || compareAndSetState(available, remaining))
                     return remaining;
             }
         }
