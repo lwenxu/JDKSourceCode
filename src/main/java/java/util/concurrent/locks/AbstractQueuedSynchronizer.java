@@ -451,55 +451,47 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
             LockSupport.unpark(s.thread);
     }
 
-    // 和互斥锁类似
+
+    // 这个方法中与 release 中的唤醒不同点在于他保证了释放动作的传递
+    // 如果后继节点需要唤醒，则执行唤醒操作，如果没有后继节点则把头设置为 PROPAGATE
+    // 这里的死循环和其他的操作中的死循环一样，为了检测新的节点进入队列
+    // 其实这个方法比较特殊，在 acquireShared 和 releaseShared 中都被执行了，主要就是共享模式允许多个线程进入临界区
     private void doReleaseShared() {
         for (;;) {
             Node h = head;
+            // 等待队列中有正在等待的线程
             if (h != null && h != tail) {
+                // 获取头节点对应的线程的状态
                 int ws = h.waitStatus;
+                // 如果头节点对应的线程是SIGNAL状态，则意味着头结点正在运行，后继结点所对应的线程需要被唤醒。
                 if (ws == Node.SIGNAL) {
+                    // 修改头结点，现在后继节点要成为头结点了，状态设置初始值
                     if (!compareAndSetWaitStatus(h, Node.SIGNAL, 0))
-                        continue;            // loop to recheck cases
+                        continue;
+                    // 唤醒头结点h的后继结点所对应的线程
                     unparkSuccessor(h);
                 }
-                else if (ws == 0 &&
-                         !compareAndSetWaitStatus(h, 0, Node.PROPAGATE))
+                // 队列中没有等待线程，只有一个正在运行的线程。
+                // 将头结点设置为 PROPAGATE 标志进行传递唤醒
+                else if (ws == 0 && !compareAndSetWaitStatus(h, 0, Node.PROPAGATE))
                     continue;                // loop on failed CAS
             }
+            // 如果头结点发生变化有一种可能就是在 acquireShared 的时候会调用 setHeadAndPropagate 导致头结点变化，则继续循环。
+            // 从新的头结点开始唤醒后继节点。
             if (h == head)                   // loop if head changed
                 break;
         }
     }
 
-    /**
-     * Sets head of queue, and checks if successor may be waiting
-     * in shared mode, if so propagating if either propagate > 0 or
-     * PROPAGATE status was set.
-     *
-     * @param node the node
-     * @param propagate the return value from a tryAcquireShared
-     */
+    //  被 acquireShard 调用
     private void setHeadAndPropagate(Node node, int propagate) {
         Node h = head; // Record old head for check below
+        // 当前线程设为头结点
         setHead(node);
-        /*
-         * Try to signal next queued node if:
-         *   Propagation was indicated by caller,
-         *     or was recorded (as h.waitStatus either before
-         *     or after setHead) by a previous operation
-         *     (note: this uses sign-check of waitStatus because
-         *      PROPAGATE status may transition to SIGNAL.)
-         * and
-         *   The next node is waiting in shared mode,
-         *     or we don't know, because it appears null
-         *
-         * The conservatism in both of these checks may cause
-         * unnecessary wake-ups, but only when there are multiple
-         * racing acquires/releases, so most need signals now or soon
-         * anyway.
-         */
-        if (propagate > 0 || h == null || h.waitStatus < 0 ||
-            (h = head) == null || h.waitStatus < 0) {
+        // propagate 代表的是当前剩余的资源数，如果还有资源就唤醒后面的共享线程，允许多个线程获取锁，
+        // 或者还有一个比较有意思的条件就是 h.waitStatus < 0 他其实是说 h.waitStatus 要么是 signal 要么是 propagate
+        // 从而唤醒后继节点
+        if (propagate > 0 || h == null || h.waitStatus < 0 || (h = head) == null || h.waitStatus < 0) {
             Node s = node.next;
             if (s == null || s.isShared())
                 doReleaseShared();
@@ -1016,17 +1008,7 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
             doAcquireNanos(arg, nanosTimeout);
     }
 
-    //  尝试释放锁
-    public final boolean release(int arg) {
-        // 如果释放锁成功 唤醒同步队列中的后继节点
-        if (tryRelease(arg)) {
-            Node h = head;
-            if (h != null && h.waitStatus != 0)
-                unparkSuccessor(h);
-            return true;
-        }
-        return false;
-    }
+
 
 
     /*  ==================================================
@@ -1092,15 +1074,20 @@ public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchron
             doAcquireSharedNanos(arg, nanosTimeout);
     }
 
-    /**
-     * Releases in shared mode.  Implemented by unblocking one or more
-     * threads if {@link #tryReleaseShared} returns true.
-     *
-     * @param arg the release argument.  This value is conveyed to
-     *        {@link #tryReleaseShared} but is otherwise uninterpreted
-     *        and can represent anything you like.
-     * @return the value returned from {@link #tryReleaseShared}
-     */
+
+    //  尝试释放锁
+    public final boolean release(int arg) {
+        // 如果释放锁成功 唤醒同步队列中的后继节点
+        if (tryRelease(arg)) {
+            Node h = head;
+            if (h != null && h.waitStatus != 0)
+                unparkSuccessor(h);
+            return true;
+        }
+        return false;
+    }
+    // 为了方便对比把两个代码放在一块 可以看到 release 中的结构完全一样
+    // 区别就在于 doReleaseShared 中有更多的判断操作
     public final boolean releaseShared(int arg) {
         if (tryReleaseShared(arg)) {
             doReleaseShared();

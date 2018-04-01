@@ -1,6 +1,9 @@
 ## 2018/3/25  ChangeLogs
 1. 初始化仓库，其实这份源码之前有阅读过一点,有一些注释现在正是开始同步写博客分析 Java8 源码
-2. 博客地址 <https://lwenxu.coding.me>
+2. 博客地址:[博客园](http://www.cnblogs.com/lwen/)
+           [个人博客](https://lwenxu.coding.me)
+           [简书](https://www.jianshu.com/u/78464cccc621)
+           [CSDN](https://blog.csdn.net/Greek_xpf)
 ### ArrayList
 1. ctor-3
 2. get
@@ -116,3 +119,9 @@ Synchronized keyword   javap -c/v
 3. acquire/tryAcquire/addWaiter/tryQueued
 4. acquireShared
 5. releaseShared
+
+## 2018/4/1  ChangeLogs
+### Semaphore
+1. ctor-2
+2. require
+3. release
