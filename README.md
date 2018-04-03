@@ -125,3 +125,8 @@ Synchronized keyword   javap -c/v
 1. ctor-2
 2. require
 3. release
+
+## 2018/4/3  ChangeLogs
+1. ctor-1
+2. await/tryAcquire
+3. countDown/tryRelease
