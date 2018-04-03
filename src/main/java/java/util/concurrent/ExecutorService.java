@@ -210,57 +210,14 @@ public interface ExecutorService extends Executor {
     boolean awaitTermination(long timeout, TimeUnit unit)
         throws InterruptedException;
 
-    /**
-     * Submits a value-returning task for execution and returns a
-     * Future representing the pending results of the task. The
-     * Future's {@code get} method will return the task's result upon
-     * successful completion.
-     *
-     * <p>
-     * If you would like to immediately block waiting
-     * for a task, you can use constructions of the form
-     * {@code result = exec.submit(aCallable).get();}
-     *
-     * <p>Note: The {@link Executors} class includes a set of methods
-     * that can convert some other common closure-like objects,
-     * for example, {@link java.security.PrivilegedAction} to
-     * {@link Callable} form so they can be submitted.
-     *
-     * @param task the task to submit
-     * @param <T> the type of the task's result
-     * @return a Future representing pending completion of the task
-     * @throws RejectedExecutionException if the task cannot be
-     *         scheduled for execution
-     * @throws NullPointerException if the task is null
-     */
+    // 返回一个 Future 对象，表示将要执行的线程的状态
+    // Future 对象的 get 方法会一直阻塞直到算出值
     <T> Future<T> submit(Callable<T> task);
 
-    /**
-     * Submits a Runnable task for execution and returns a Future
-     * representing that task. The Future's {@code get} method will
-     * return the given result upon successful completion.
-     *
-     * @param task the task to submit
-     * @param result the result to return
-     * @param <T> the type of the result
-     * @return a Future representing pending completion of the task
-     * @throws RejectedExecutionException if the task cannot be
-     *         scheduled for execution
-     * @throws NullPointerException if the task is null
-     */
+    // Runnable 本来是不返回 Future 对象的，这里使用了一个参数传递
     <T> Future<T> submit(Runnable task, T result);
 
-    /**
-     * Submits a Runnable task for execution and returns a Future
-     * representing that task. The Future's {@code get} method will
-     * return {@code null} upon <em>successful</em> completion.
-     *
-     * @param task the task to submit
-     * @return a Future representing pending completion of the task
-     * @throws RejectedExecutionException if the task cannot be
-     *         scheduled for execution
-     * @throws NullPointerException if the task is null
-     */
+    // 普通的执行。
     Future<?> submit(Runnable task);
 
     /**
