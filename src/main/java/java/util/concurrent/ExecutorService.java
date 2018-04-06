@@ -136,64 +136,13 @@ import java.util.Collection;
  */
 public interface ExecutorService extends Executor {
 
-    /**
-     * Initiates an orderly shutdown in which previously submitted
-     * tasks are executed, but no new tasks will be accepted.
-     * Invocation has no additional effect if already shut down.
-     *
-     * <p>This method does not wait for previously submitted tasks to
-     * complete execution.  Use {@link #awaitTermination awaitTermination}
-     * to do that.
-     *
-     * @throws SecurityException if a security manager exists and
-     *         shutting down this ExecutorService may manipulate
-     *         threads that the caller is not permitted to modify
-     *         because it does not hold {@link
-     *         java.lang.RuntimePermission}{@code ("modifyThread")},
-     *         or the security manager's {@code checkAccess} method
-     *         denies access.
-     */
+    // 启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
     void shutdown();
-
-    /**
-     * Attempts to stop all actively executing tasks, halts the
-     * processing of waiting tasks, and returns a list of the tasks
-     * that were awaiting execution.
-     *
-     * <p>This method does not wait for actively executing tasks to
-     * terminate.  Use {@link #awaitTermination awaitTermination} to
-     * do that.
-     *
-     * <p>There are no guarantees beyond best-effort attempts to stop
-     * processing actively executing tasks.  For example, typical
-     * implementations will cancel via {@link Thread#interrupt}, so any
-     * task that fails to respond to interrupts may never terminate.
-     *
-     * @return list of tasks that never commenced execution
-     * @throws SecurityException if a security manager exists and
-     *         shutting down this ExecutorService may manipulate
-     *         threads that the caller is not permitted to modify
-     *         because it does not hold {@link
-     *         java.lang.RuntimePermission}{@code ("modifyThread")},
-     *         or the security manager's {@code checkAccess} method
-     *         denies access.
-     */
+    // 尝试终止正在执行的线程，暂停处理正在等待的任务，并返回等待执行的任务列表。
     List<Runnable> shutdownNow();
-
-    /**
-     * Returns {@code true} if this executor has been shut down.
-     *
-     * @return {@code true} if this executor has been shut down
-     */
+    //当前线程结束
     boolean isShutdown();
-
-    /**
-     * Returns {@code true} if all tasks have completed following shut down.
-     * Note that {@code isTerminated} is never {@code true} unless
-     * either {@code shutdown} or {@code shutdownNow} was called first.
-     *
-     * @return {@code true} if all tasks have completed following shut down
-     */
+    //全部结束
     boolean isTerminated();
 
     /**
@@ -213,11 +162,9 @@ public interface ExecutorService extends Executor {
     // 返回一个 Future 对象，表示将要执行的线程的状态
     // Future 对象的 get 方法会一直阻塞直到算出值
     <T> Future<T> submit(Callable<T> task);
-
     // Runnable 本来是不返回 Future 对象的，这里使用了一个参数传递
     <T> Future<T> submit(Runnable task, T result);
-
-    // 普通的执行。
+    // 普通的执行，类似于 execute 方法
     Future<?> submit(Runnable task);
 
     /**
